@@ -14,7 +14,7 @@
 	<link href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/touch.png" rel="apple-touch-icon-precomposed">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/skelet.css" > <!-- include Skēlet. -->
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css"> <!-- write all of your CSS here -->
