@@ -34,7 +34,7 @@ require_once(get_template_directory().'/languages/translation.php');
 // require_once(get_template_directory().'/functions/dashboard.php'); 
 
 // WooCommerce Resets
-// require_once(get_template_directory().'/functions/woocommerce-cleaner.php'); 
+// require_once(get_template_directory().'/functions/woocommerce.php'); 
 
 // Your custom functions go in this file!
 // require_once(get_template_directory().'/functions/functions.php'); 
