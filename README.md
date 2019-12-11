@@ -1,12 +1,9 @@
-# wp-Skēlet.v2
-### wp-Skēlet. is a blank, minimal theme for WordPress. It's basically [Skēlet.](https://selekkt.dk/git/skelet) for WordPress.
+<h1 align='center'>Skelet.</h1>
+
+
+A blank and minimal theme for WordPress. No dependencies, improved directory structure, optimized build process and freedom to create. It's basically [Skelet.](https://selekkt.dk/git/skelet) for WordPress.
 
 ---
 
-wp-Skēlet. is not a Framework. You don't need to use child themes. wp-Skēlet. is meant to be your starting point, a rock solid foundation to start any WordPress project. Keep what you need, remove what you don’t. It’s totally up to you. 
-wp-Skēlet. is the WordPress version of [Skēlet.](https://selekkt.dk/git/skelet), you don't have to style from scratch forms, create grids or have to reset the elements or write animations by yourself. That's it. If you find it useful make use of it.
-
-🍉 [docs & examples](https://selekkt.dk/help/skelet/docs)
-
----
-*wp-Skēlet.* is build on the HTML5 & CSS3 starter kit, [Skēlet.](https://selekkt.dk/git/skelet).
+### View the [Full Documentation →](https://selekkt.dk/skelet/v3/)
+### View [Examples →](https://selekkt.dk/skelet/v3/#examples)
