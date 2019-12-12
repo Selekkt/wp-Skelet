@@ -46,6 +46,13 @@ remove_action( 'wp_head', 'wp_generator' );
 remove_filter( 'the_excerpt', 'wpautop' );
 
 
+// Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
+function remove_thumbnail_dimensions( $html ) {
+    $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
+    return $html;
+}
+
+
 // Disabling WordPress' default REST API
 function disable_json_api() {
 	// Filters for WP-API version 1.x
