@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*! Skelet. v3.0.0 | MIT License | (c) 2020 Sēlekkt. | https://Selekkt.dk/skelet/ */
+/*! Skelet. v3.0.4 | MIT License | (c) 2020 Sēlekkt. | https://Selekkt.dk/skelet/ */
 *, html, body { box-sizing: border-box; }
 
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -178,13 +178,13 @@ main { flex: 1; }
 
 .sticky { position: sticky; top: 0; }
 
-span[class*="space"] { display: block; width: 100%; margin: var(--spacer, 0.5rem) auto; }
+span[class*="space"] { display: block; width: 100%; margin: var(--spacer, 3rem) auto; }
 .space  { --spacer: 3rem; }
-.space1 { --spacer: 5vw; }
-.space2 { --spacer: 10vw; }
-.space3 { --spacer: 20vw; }
-.space4 { --spacer: 25vw; }
-.space5 { --spacer: 30vw; }
+.space1 { --spacer: 5rem; }
+.space2 { --spacer: 7rem; }
+.space3 { --spacer: 9rem; }
+.space4 { --spacer: 11rem; }
+.space5 { --spacer: 13rem; }
 
 /* Vertical and Horizontal align :: you need to create a parent container to which the object itself will be aligned. */
 .center-axys { display: flex; align-items: center; justify-content: center; }
@@ -409,7 +409,7 @@ button.is-dark,.button.is-dark   { background-color: var(--dark); color: var(--l
 button.is-black,.button.is-black  { background-color: var(--black); color: var(--white); }
 button.is-blank,.button.is-blank  { background: none; border: none; color: var(--color); }
 button.is-outline,.button.is-outline { background: none; border: 1px solid var(--borderColor); }
-    button:hover.is-outline,.button:hover.is-outline { color: var(--color); border-color: var(--borderHover); }
+    button:hover.is-outline,.button:hover.is-outline,a.button:hover { color: var(--color); border-color: var(--borderHover); }
 
 button.is-primary,.button.is-primary  { background-color: var(--primary); color: var(--white); }
 button.is-green,.button.is-green  { background-color: var(--green); color: var(--white); }
@@ -543,11 +543,11 @@ ul.no-style ul, ol.no-style ol { list-style: none; }
 ------------------ */
 hr { box-sizing: content-box; margin: var(--hrMargin) auto; border: var(--hrThic) solid var(--borderColor); height: 0; width: 95%; }
 hr.full { width: 100%; }
-hr.gradient { border: 0 none; height: var(--hrMargin); background-image: linear-gradient(to right, var(--hrColor) 0%, var(--borderColor) 50%, var(--hrColor) 100%); }
+hr.gradient { border: 0 none; height: 1px; background-image: linear-gradient(to right, var(--hrColor) 0%, var(--borderColor) 50%, var(--hrColor) 100%); }
 
 /* Line w/ text: --- text --- */
 .text-hr { display: flex; align-items: center; text-align: center; margin: calc(var(--margin) * 5) auto; }
-.text-hr::before, .text-hr::after { content: ''; flex: 1; border-bottom: var(--hrThic) solid var(--borderColor); }
+.text-hr::before, .text-hr::after { content: ''; flex: 1; border-bottom: 1px solid var(--borderColor); }
 .text-hr::before { margin-right: var(--padding); }
 .text-hr::after { margin-left: var(--padding); }
 
@@ -575,7 +575,7 @@ grid {
     grid-template-columns: var(--grid-tc);
 }
 
-grid.compact { grid-row-gap: 0; }
+grid.compact { grid-row-gap: 0; }
 grid > c > img, grid > c > p > img { -o-object-fit: contain; object-fit: contain; max-width: 100% }
 
 /* fluid columns */
@@ -793,13 +793,12 @@ grid.debug > :nth-child(6n+6) { --color: rgba(94, 204,211,0.3) }
 grid.debug > :nth-child(6n+7) { --color: rgba(248,110,91 ,0.3) }
 
 /* ------------------
-  flex
-
+  flexbox
 ------------------ */
 /*  FLEX CONTAINER */
 flex { display: flex; }
-flex > c { appearance: none; -webkit-appearance: none; margin: var(--rowGap) 0; }
-flex > c > img, flex > c > p > img { -o-object-fit: contain; object-fit: contain; max-width: 100% }
+flex > * { flex: 0 1 auto; appearance: none; -webkit-appearance: none; padding: var(--rowGap); }
+flex > * > img, flex > * > p > img { -o-object-fit: contain; object-fit: contain; max-width: 100% }
 
 /*  FLEX DIRECTION */
 flex[direction="column"] { flex-direction: column; }
