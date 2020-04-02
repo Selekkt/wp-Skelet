@@ -3,9 +3,9 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta data-framework="Skelet." data-ver="3.0.0" data-dev="Sēlekkt. Studio">
+    <meta data-framework="Skelet." data-ver="3.1.2" data-dev="Sēlekkt. Studio">
     
     <title><?php wp_title( '-', true, 'right' ); ?><</title>
     <meta name="description" content="<?php bloginfo('description'); ?>">
