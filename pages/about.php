@@ -1,5 +1,5 @@
 <?php 
-	/* Template Name: Contact */ 
+	/* Template Name: About */ 
 ?>
 
 <?php get_header(); ?>
