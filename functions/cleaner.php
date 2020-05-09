@@ -27,6 +27,11 @@ function skelet_head_cleanup() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Removes relational links for the posts adjacent to the current post.
 	remove_action( 'wp_head', 'wp_generator' ); // Removes the XHTML generator that is generated on the wp_head hook, WP version
 	remove_action( 'wp_head', 'rel_canonical' ); // Removes WordPress' canonical links
+	remove_action( 'wp_head', 'index_rel_link' ); // index link
+	if (!is_admin()) {
+		wp_deregister_script('jquery'); // De-Register jQuery
+		wp_register_script('jquery', '', '', '', true); // Register as 'empty', because we manually insert our script
+	}
 
 }
 
