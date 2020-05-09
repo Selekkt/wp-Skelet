@@ -19,7 +19,10 @@ require_once(get_template_directory().'/languages/translation.php');
 
 
 // Remove 4.2 Emoji Support
-// require_once(get_template_directory().'/functions/disable-emoji.php'); 
+// require_once(get_template_directory().'/functions/disable-emoji.php');
+
+// Disable Gutenberg
+// require_once(get_template_directory().'/functions/disable-gutenberg.php'); 
 
 // Related post function - no need to rely on plugins
 // require_once(get_template_directory().'/functions/related-posts.php'); 
