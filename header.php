@@ -7,7 +7,7 @@
     
     <meta data-framework="Skelet." data-ver="3.1.2" data-dev="Sēlekkt. Studio">
     
-    <title><?php wp_title( '-', true, 'right' ); ?><</title>
+    <title><?php wp_title( '-', true, 'right' ); ?></title>
     <meta name="description" content="<?php bloginfo('description'); ?>">
 
     <link href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon.ico" rel="shortcut icon">
