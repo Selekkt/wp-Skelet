@@ -1,6 +1,6 @@
 <aside class="sidebar" role="complementary">
-	<!-- To see additional archive styles, visit the /bits folder -->
-	<?php get_template_part( 'bits/content', 'searchform' ); ?>
+	<!-- To see additional archive styles, visit the /snippets folder -->
+	<?php get_template_part( 'snippets/content', 'searchform' ); ?>
 
 	<div class="sidebar-widget">
 		<?php if ( is_active_sidebar( 'sidebar1' ) ) : ?>

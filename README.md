@@ -5,5 +5,5 @@ A blank and minimal theme for WordPress. No dependencies, improved directory str
 
 ---
 
-### View the [Full Documentation →](https://selekkt.dk/skelet/v3/)
-### View [Examples →](https://selekkt.dk/skelet/v3/#examples)
+### View Skelet.css [Full Documentation →](https://selekkt.dk/skelet/v3/)
+### View Skelet.css [Examples →](https://selekkt.dk/skelet/v3/#examples)
