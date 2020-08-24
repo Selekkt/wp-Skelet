@@ -58,46 +58,33 @@ function remove_thumbnail_dimensions( $html ) {
     return $html;
 }
 
-
-// Disabling WordPress' default REST API
-function disable_json_api() {
-	// Filters for WP-API version 1.x
-	add_filter('json_enabled', '__return_false');
-	add_filter('json_jsonp_enabled', '__return_false');
-
-	// Filters for WP-API version 2.x
-	add_filter('rest_enabled', '__return_false');
-	add_filter('rest_jsonp_enabled', '__return_false');
-}
-add_action( 'after_setup_theme', 'disable_json_api' );
-
-
-// Removing WordPress wp-json & oembed
-function remove_oembed() {
-    // Remove the REST API lines from the HTML Header
-    remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
-    remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
-
-    // Remove the REST API endpoint.
-    remove_action( 'rest_api_init', 'wp_oembed_register_route' );
-
-    // Turn off oEmbed auto discovery.
-    add_filter( 'embed_oembed_discover', '__return_false' );
-
-    // Don't filter oEmbed results.
-    remove_filter( 'oembed_dataparse', 'wp_filter_oembed_result', 10 );
-
-    // Remove oEmbed discovery links.
-    remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
-
-    // Remove oEmbed-specific JavaScript from the front-end and back-end.
-    remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-
-   // Remove all embeds rewrite rules.
-   //add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
-}
-add_action( 'after_setup_theme', 'remove_oembed' );
-
+/* *** ***
+	* Since the REST API is used by WordPress admin you can't turn it off
+	* but you can ⤵
+	* Require Authentication for All Requests on the API
+	* https://developer.wordpress.org/rest-api/frequently-asked-questions/#can-i-disable-the-rest-api
+*** *** */
+add_filter( 'rest_authentication_errors', function( $result ) {
+    // If a previous authentication check was applied,
+    // pass that result along without modification.
+    if ( true === $result || is_wp_error( $result ) ) {
+        return $result;
+    }
+ 
+    // No authentication has been performed yet.
+    // Return an error if user is not logged in.
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error(
+            'rest_not_logged_in',
+            __( 'You are not currently logged in.' ),
+            array( 'status' => 401 )
+        );
+    }
+ 
+    // Our custom authentication check should have no effect
+    // on logged-in requests
+    return $result;
+});
 
 // removing admin bar
 //add_filter('show_admin_bar', '__return_false');
