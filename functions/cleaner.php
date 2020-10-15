@@ -64,6 +64,7 @@ function remove_thumbnail_dimensions( $html ) {
 	* Require Authentication for All Requests on the API
 	* https://developer.wordpress.org/rest-api/frequently-asked-questions/#can-i-disable-the-rest-api
 *** *** */
+/*
 add_filter( 'rest_authentication_errors', function( $result ) {
     // If a previous authentication check was applied,
     // pass that result along without modification.
@@ -85,10 +86,13 @@ add_filter( 'rest_authentication_errors', function( $result ) {
     // on logged-in requests
     return $result;
 });
+*/
 
 // removing admin bar
 //add_filter('show_admin_bar', '__return_false');
 
+// removing admin bar for NON admins
+//if (!current_user_can('administrator')) : show_admin_bar(false); endif;
 
 // Remove injected CSS for recent comments widget
 function skelet_remove_wp_widget_recent_comments_style() {
