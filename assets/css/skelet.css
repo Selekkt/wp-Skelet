@@ -1,5 +1,4 @@
-@charset "UTF-8";
-/*! Skelet. v3.1.20 | MIT License | (c) 2020 Sēlekkt. | https://Selekkt.dk/skelet/v3/ */
+/*! Skelet. v3.2.1 | MIT License | (c) 2021 Selekkt. | https://selekkt.dk/skelet/v3/ */
 *, html, body { box-sizing: border-box; }
 
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -44,7 +43,8 @@ summary{display:list-item}
     /* Typography */
     --fontFamily: "Inter", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", -apple-system, BlinkMacSystemFont, -system-ui, system-ui, sans-serif;
     --fontFamilyVar: "Inter var", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", -apple-system, BlinkMacSystemFont, -system-ui, system-ui, sans-serif;
-    
+    --fontFamilyHeadings: var(--fontFamily);
+
     --fontSize: 1.7rem;
     --fontLine: 1.6;
     --fontWeight: 400;
@@ -57,8 +57,7 @@ summary{display:list-item}
     --h6Size: 1.8rem;
 
     --hWeight: 600;
-    
-    /* Line height of Headins */
+
     --hLine: 1.5;
     --h1Line: var(--hLine);
     --h2Line: var(--hLine);
@@ -75,6 +74,7 @@ summary{display:list-item}
     --hrMargin: calc(var(--margin) * 5);
     --pMargin: var(--margin);
 
+    /* @for input/textarea/tables etc. */
     --boxPadding: var(--padding);
     --boxMargin: var(--margin);
     --boxRadius: var(--radius);
@@ -134,7 +134,7 @@ summary{display:list-item}
     --boxBorderHover: #BABABA;
     --boxBorderActive: var(--primary);
     --boxBgColor: #fefefe;
-    --boxPlaceholderColor: var(--color); /* placeholder color */
+    --boxPlaceholderColor: var(--color);
 
     /* @for checkbox/radio/.switch */
     --boxActive: var(--primary);
@@ -144,6 +144,7 @@ summary{display:list-item}
     /* @for buttons */
     --buttonBgColor: transparent;
     --buttonColor: var(--color);
+    --buttonColorHover: var(--color);
     --buttonBorderColor: currentColor;
     --buttonBorderHover: currentColor;
 
@@ -172,6 +173,7 @@ summary{display:list-item}
     --boxPlaceholderColor: var(--color);
 
     --buttonColor: var(--color);
+    --buttonColorHover: var(--color);
     --buttonBorderColor: currentColor;
     --buttonBorderHover: currentColor;
 
@@ -187,13 +189,13 @@ summary{display:list-item}
 /* ------------------
   more resets
 ------------------ */
-*:focus { outline: none; }
+*:focus { outline:none }
 :not(pre) > code, :not(pre) > kbd, :not(pre) > samp { font-size: 1.2rem; font-family: Consolas, monospace, serif; white-space: nowrap; }
 img,svg,video,canvas,audio,iframe,embed,object,dd { display: block; vertical-align: middle; box-sizing: border-box; max-width: 100%; height: auto; }
 dt {font-weight:bold}
 dd {margin-inline-start:4rem}
 figure {margin:0}
-[hidden], template, iframe {display:none!important}
+[hidden], template, iframe {display:none}
 
 /* ------------------
   basics
@@ -219,7 +221,7 @@ main { flex: 1; }
   typography
 ------------------ */
 h1, h2, h3, h4, h5, h6, 
-.h1,.h2,.h3,.h4,.h5,.h6 { color: var(--colorHeadings); margin-top: 0; margin-bottom: 0.7rem; font-size: var(--hSize); font-weight: var(--hWeight); line-height: var(--hLine); }
+.h1,.h2,.h3,.h4,.h5,.h6 { font-family: var(--fontFamilyHeadings); font-size: var(--hSize); font-weight: var(--hWeight); line-height: var(--hLine); color: var(--colorHeadings); margin-top: 0; margin-bottom: 0.7rem;  }
 
 h1,.h1 { --hSize: var(--h1Size); --hLine: var(--h1Line); }
 h2,.h2 { --hSize: var(--h2Size); --hLine: var(--h2Line); }
@@ -563,8 +565,8 @@ button[aria-label][data-tooltip-pos] { overflow: visible; }
 /* ------------------
   elements
 ------------------ */
-.is-green { border-color: var(--green)!important; }
-.is-red, input:invalid { border-color: var(--red)!important; }
+.is-green { border-color: var(--green); }
+.is-red, input:invalid { border-color: var(--red); }
 
 /* ------------------
   buttons
@@ -600,6 +602,7 @@ input[type="button"]:hover,
 input[type="submit"]:focus, 
 input[type="reset"]:focus, 
 input[type="button"]:focus {
+    color: var(--buttonColorHover);
     border-color: var(--buttonBorderHover);
     opacity: 0.9;
     outline: 0; 
@@ -621,7 +624,7 @@ button.is-black,.button.is-black  { --buttonBgColor: var(--black); --buttonColor
 button.is-blank,.button.is-blank  { --buttonBgColor: none; --buttonColor: var(--color); --buttonBorderColor: none; }
 
 button.is-outline,.button.is-outline { transition: border 0; background: none; border: var(--buttonBorderWidth) var(--buttonBorderStyle) var(--buttonBorderColor); color: var(--buttonColor); }
-button:hover.is-outline,.button:hover.is-outline { color: var(--buttonColor); border-color: var(--buttonBorderHover); }
+button:hover.is-outline,.button:hover.is-outline { color: var(--buttonColorHover); border-color: var(--buttonBorderHover); }
 
 button.is-primary,.button.is-primary  { --buttonBgColor: var(--primary); --buttonColor: var(--white); }
 button.is-green,.button.is-green  { --buttonBgColor: var(--green); --buttonColor: var(--white); }
@@ -1983,19 +1986,19 @@ flex > c[as="stretch"] { align-self: stretch; }
 [animation="scalein"] { --animation-name: scaleIn; backface-visibility: hidden; transform: translateZ(0px); }
 
 /* flip */
-[animation="flip"] { --animation-name: flip; backface-visibility: visible;  }
+[animation="flip"] { --animation-name: flip; backface-visibility:visible }
 
 /* flip in left */
-[animation="flipin-x"] { --animation-name: flipInX; backface-visibility: visible!important;  }
+[animation="flipin-x"] { --animation-name: flipInX; backface-visibility:visible  }
 
 /* flip out left  */
-[animation="flipout-x"] { --animation-name: flipOutX; backface-visibility: visible!important; }
+[animation="flipout-x"] { --animation-name: flipOutX; backface-visibility:visible }
 
 /* flip in down */
-[animation="flipin-y"] { --animation-name: flipInY; backface-visibility: visible!important;  }
+[animation="flipin-y"] { --animation-name: flipInY; backface-visibility:visible}
 
 /* flip out down */
-[animation="flipout-y"] { --animation-name: flipOutY; backface-visibility: visible!important;  }
+[animation="flipout-y"] { --animation-name: flipOutY; backface-visibility:visible }
 
 
 /**** Keyframes x Animations */
