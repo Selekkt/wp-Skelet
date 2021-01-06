@@ -35,15 +35,6 @@ function skelet_head_cleanup() {
 
 }
 
-//Remove Gutenberg Block Library CSS from loading on the frontend
-function smartwp_remove_wp_block_library_css(){
-    wp_dequeue_style( 'wp-block-library' );
-    wp_dequeue_style( 'wp-block-library-theme' );
-    wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-} 
-add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css', 100 );
-
-
 // Remove l10n.js
 function kill_l10n() { if (!is_admin()) wp_deregister_script( 'l10n' ); }
 add_action( 'wp_print_scripts', 'kill_l10n' );
