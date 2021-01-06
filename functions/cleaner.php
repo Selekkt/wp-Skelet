@@ -35,6 +35,14 @@ function skelet_head_cleanup() {
 
 }
 
+//Remove Gutenberg Block Library CSS from loading on the frontend
+function smartwp_remove_wp_block_library_css(){
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+} 
+add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css', 100 );
+
 
 // Remove l10n.js
 function kill_l10n() { if (!is_admin()) wp_deregister_script( 'l10n' ); }
@@ -62,6 +70,11 @@ function remove_thumbnail_dimensions( $html ) {
 	* Since the REST API is used by WordPress admin you can't turn it off
 	* but you can ⤵
 	* Require Authentication for All Requests on the API
+
+	+ Keep in mind that, for instance, plugin such as Contact form 7 use the API to submit the form
+	+ and if the user isn't logged in the form wont submit.
+	++++ Please test before activating ++++
+
 	* https://developer.wordpress.org/rest-api/frequently-asked-questions/#can-i-disable-the-rest-api
 *** *** */
 /*
@@ -116,7 +129,6 @@ function skelet_gallery_style($css) {
   return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 
-
 // This removes the annoying […] to a Read More link
 function skelet_excerpt_more($more) {
 	global $post;
@@ -138,3 +150,26 @@ function skelet_get_the_author_posts_link() {
 	);
 	return $link;
 }
+
+// Load Contact Form 7 files only on pages where the shortcode is present 
+/*
+function rjs_lwp_contactform_css_js() {
+    global $post;
+    if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'contact-form-7') ) {
+        // CF7
+        wp_enqueue_script( 'contact-form-7' );
+        wp_enqueue_style( 'contact-form-7' );
+        // re-captcha 
+        wp_enqueue_script( 'google-recaptcha' );
+        wp_enqueue_script( 'wpcf7-recaptcha' );
+    } else {
+        // CF7
+        wp_dequeue_script( 'contact-form-7' );
+        wp_dequeue_style( 'contact-form-7' );
+        // re-captcha 
+        wp_dequeue_script( 'google-recaptcha' );
+        wp_dequeue_script( 'wpcf7-recaptcha' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'rjs_lwp_contactform_css_js');
+*/
