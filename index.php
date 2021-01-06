@@ -2,7 +2,7 @@
 <main role="main">
 	<section>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<!-- To see additional archive styles, visit the /snippets folder -->
+			<?php // To see additional archive styles, visit the /snippets folder ?>
 			<?php get_template_part( 'snippets/loop', 'archive' ); ?>
 		<?php endwhile; ?>
 			<?php skelet_page_navi(); ?>
