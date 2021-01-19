@@ -14,7 +14,7 @@
     <link href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/touch.png" rel="apple-touch-icon-precomposed">
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> <!-- browse the icons: https://fontawesome.com/icons?d=listing&m=free -->
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/skelet.css" > <!-- include Skēlet. -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css"> <!-- write all of your CSS here -->
