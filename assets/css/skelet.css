@@ -1,10 +1,9 @@
-/*! Skelet. v3.3.0 | MIT License | (c) 2021 Selekkt. | https://selekkt.dk/skelet/v3/ */
+/*! Skelet. v3.3.1 | MIT License | (c) 2021 Selekkt. | https://selekkt.dk/skelet/v3/ */
 *,html,body {box-sizing:border-box}
 
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html{line-height:1.15;-webkit-text-size-adjust:100%}
 body{margin:0}
-h1{font-size:2em;margin:.67em 0}
 hr{box-sizing:content-box;overflow:visible}
 pre{font-family:monospace,monospace;font-size:1em}
 a{background:transparent}
@@ -191,7 +190,8 @@ summary{display:list-item}
   more resets
 ------------------ */
 :not(pre) > code, :not(pre) > kbd, :not(pre) > samp { font-size: 1.2rem; font-family: Consolas, monospace, serif; white-space: nowrap; }
-img,svg,video,canvas,audio,iframe,embed,object,dd { display: block; vertical-align: middle; box-sizing: border-box; max-width: 100%; height: auto; }
+img,svg,canvas,video,audio,iframe,embed,object,dd { display: block; vertical-align: middle; box-sizing: border-box; max-width: 100%; height: auto; }
+iframe{width:100%}
 dt {font-weight:bold}
 dd {margin-inline-start:4rem}
 figure {margin:0}
@@ -343,15 +343,15 @@ pre > code { display: block; padding: calc(var(--boxPadding) * 1); white-space: 
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
-    .fullwidth-m { width: 100%; box-mizing: border-box; }
-    .fullwidth-max-m { max-width: 100%; box-mizing: border-box; }
+    .fullwidth-m { width: 100%; box-sizing: border-box; }
+    .fullwidth-max-m { max-width: 100%; box-sizing: border-box; }
 
     .block-m { display: block; }
     .inline-m { display: inline; margin: 0; }
     .inline-block-m { display: inline-block; margin: 0; }
     .center-m { display: block; text-align: center; margin: 0 auto; }
 
-    .nowrap-m { white-mpace: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nowrap-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .text-mtart-m { text-align: start; }
     .text-center-m { text-align: center; }
     .text-end-m { text-align: end; }
@@ -372,15 +372,15 @@ pre > code { display: block; padding: calc(var(--boxPadding) * 1); white-space: 
 }
 
 @media (min-width: 1599px) { 
-    .fullwidth-l { width: 100%; box-lizing: border-box; }
-    .fullwidth-lax-l { max-width: 100%; box-lizing: border-box; }
+    .fullwidth-l { width: 100%; box-sizing: border-box; }
+    .fullwidth-lax-l { max-width: 100%; box-sizing: border-box; }
 
     .block-l { display: block; }
     .inline-l { display: inline; margin: 0; }
     .inline-block-l { display: inline-block; margin: 0; }
     .center-l { display: block; text-align: center; margin: 0 auto; }
 
-    .nowrap-l { white-lpace: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nowrap-l { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .text-ltart-l { text-align: start; }
     .text-center-l { text-align: center; }
     .text-end-l { text-align: end; }
@@ -434,7 +434,6 @@ pre > code { display: block; padding: calc(var(--boxPadding) * 1); white-space: 
     gap: var(--scrollMargin);
     justify-content: var(--scrollJustifyContent);
     align-items: var(--scrollAlignItems);
-    white-space: nowrap;
     overflow: auto;
     counter-reset: item;
     scroll-behavior: smooth;
@@ -601,6 +600,7 @@ button,.button,[type=button],[type=submit],[type=reset] {
 .is-blank:is(button,.button,[type=button],[type=submit],[type=reset]) { background: transparent; --buttonBorderColor: transparent; --buttonBorderHover: var(--buttonBorderColor); --buttonColor: currentColor; --buttonColorHover: currentColor; }
 .is-outline:is(button,.button,[type=button],[type=submit],[type=reset]) { background: transparent; --buttonColor: var(--buttonBg); --buttonBorderColor: var(--buttonBg); }
 .is-outline:is(button,.button,[type=button],[type=submit],[type=reset]):not(.is-white,.is-black,.is-currentcolor):hover { background: var(--buttonBg); --buttonColor: var(--white); }
+.is-custom:is(button,.button,[type=button],[type=submit],[type=reset]) { --buttonBg: transparent; --buttonBorderColor: transparent; --buttonBorderHover: transparent; --buttonColor: currentColor; --buttonColorHover: currentColor; }
 
 .is-white:is(button,.button,[type=button],[type=submit],[type=reset]):not(.is-outline) { --buttonBg:var(--white); --buttonBgHover:var(--buttonBg); --buttonColor:var(--black); 
     --buttonColorHover: var(--black); }
@@ -1601,7 +1601,8 @@ x-grid.debug>:nth-child(6n+7){ --color:rgba(248,110,91,0.3) }
 ------------------ */
 /*  FLEX CONTAINER */
 x-flex { display: flex; gap: var(--rowGap, 2rem) var(--columnGap, 1rem); }
-x-flex > * { flex: 0 1 auto; appearance: none; -webkit-appearance: none; }
+x-flex > * { flex: 0 1 auto; width: auto; appearance: none; -webkit-appearance: none; }
+x-flex.even > * { width: 100%; }
 x-flex > * > img, x-flex > * > p > img { -o-object-fit: contain; object-fit: contain; max-width: 100% }
 
 /*  FLEX DIRECTION */
