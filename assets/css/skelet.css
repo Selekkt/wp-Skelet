@@ -1,67 +1,35 @@
-/*! Skelet. v3.4.0 | MIT License | (c) 2022 Selekkt. | https://selekkt.dk/skelet/v3/ */
-*,*::before,*::after {box-sizing:border-box}
-
-/* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-html{line-height:1.15;-webkit-text-size-adjust:100%}
-body{margin:0}
-hr{box-sizing:content-box;overflow:visible}
-pre{font-family:monospace,monospace;font-size:1em;display:grid}
-a{background:transparent}
-abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
-b,strong{font-weight:bolder}
-code,kbd,samp{font-family:monospace,monospace;font-size:1em}
-small{font-size:80%}
-sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
-sub{bottom:-.25em}
-sup{top:-.5em}
-img{border-style:none}
-button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
-button,input{overflow:visible}
-button,select{text-transform:none}
-button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}
-button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}
-button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}
-fieldset{padding:.35em .75em .625em}
-legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
-progress{vertical-align:baseline}
-textarea{overflow:auto}
-[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}
-[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}
-[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}
-[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
-::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
-details{display:block}
-summary{display:list-item}
+/*! Skelet.css - v5.0.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
 
 /* ------------------
-  css variables
+    variables
 ------------------ */
 :root {
 /** Colors */
-    --primary: #007FFF;
-    --green: #34C84A;
-    --yellow: #FDBC40;
-    --red: #FC615D;
-    --blue: #007FFF;
+    --primary: #006EF1;
+    --red: #ff6961;
+    --orange: #FFB340;
+    --yellow: #FFD426;
+    --green: #30DB5B;
+    --purple: #6F64FC;
+    --blue: #004FFF;
     --white: #FFF;
     --black: #000;
     --light: #EFEFEF;
     --dark: #181818;
-    --shadow: rgba(10, 10, 10, 0.1);
+    --shadow: rgb(10 10 10 / 0.1);
 
     --linkColor: var(--primary);
-    --linkHover: #3298ff;
+    --linkHover: #2997ff;
 
     --bgColor: #FFF;
     --color: #000;
     --colorInverse: #FFF;
-    --hColor: var(--color);
 
     --selectionBg: rgba(0,0,0,.95);
     --selectionText: #FFF;
 
     --codeBg: #F8F8F8;
-    --codeColor: #0000FF;
+    --codeColor: var(--blue);
 
     --hrColor: var(--inputBorderColor);
     --hrGradient: rgba(255, 255, 255, 0);
@@ -73,30 +41,15 @@ summary{display:list-item}
     --fontMono: "IBM Plex Mono", Consolas, "Andale Mono WT", "Andale Mono","Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
     --hFontFamily: var(--fontFamily);
 
-    --fontSize: 1.7rem;
-    --fontLine: 1.6;
+    --globalScale: 1.0;
+
+    --fontSize: clamp(calc(var(--globalScale) * var(--fontSizeMin, 1.6rem)), calc(var(--globalScale) * var(--fontSizeVal, 0.2vw + 1.6rem)), calc(var(--globalScale) * var(--fontSizeMax, 1.7rem)));
+    --fontLine: calc(2px + 2ex + 2px);
     --fontSpace: normal;
     --fontWeight: 400;
     --fontStyle: normal;
 
-    --h1Size: 4.0rem;
-    --h2Size: 3.2rem;
-    --h3Size: 2.8rem;
-    --h4Size: 2.4rem;
-    --h5Size: 2rem;
-    --h6Size: 1.6rem;
-
-    --hLine: 1.5;
-    --h1Line: var(--hLine);
-    --h2Line: var(--hLine);
-    --h3Line: var(--hLine);
-    --h4Line: var(--hLine);
-    --h5Line: var(--hLine);
-    --h6Line: var(--hLine);
-
-    --hSpace: normal;
-    --hWeight: 600;
-    --hStyle: normal;
+    --hScale: var(--globalScale);
 
     /* other */
     --padding: 1rem;
@@ -113,10 +66,10 @@ summary{display:list-item}
     --inputRadius: var(--radius);
     --inputBorderWidth: var(--borderWidth);
     --inputBorderStyle: var(--borderStyle);
-    --inputFontSize: var(--fontSize);
+    --inputFontSize: inherit;
     --inputHeight: 21px;
 
-    --inputBg: #FEFEFE;
+    --inputBg: #F8F8F8;
     --inputBgHover: var(--inputBg);
     --inputBgActive: var(--inputBg);
     --inputColor: var(--color);
@@ -133,13 +86,14 @@ summary{display:list-item}
     --inputFocus: rgba(41, 145, 248, .7);
 
     /* buttons */
-    --buttonPadding: .7em .9em;
+    --buttonPadding: 1.3rem;
     --buttonMargin: var(--inputMargin);
     --buttonRadius: var(--radius);
     --buttonBorderWidth: var(--borderWidth);
     --buttonBorderStyle: var(--borderStyle);
-    --buttonFontSize: var(--fontSize);
-    --buttonFontWeight: 600;
+    --buttonSize: inherit;
+    --buttonWeight: 600;
+    --buttonWidth: fit-content;
 
     --buttonBg: var(--primary);
     --buttonBgHover: var(--linkHover);
@@ -148,27 +102,20 @@ summary{display:list-item}
     --buttonBorderColor: transparent;
     --buttonBorderHover: transparent;
     --buttonShadow: 0 0 0 0 rgba(0,0,0,0);
+    --icoSize: var(--fontSize);
 
     /* grids */
     --columnGap: 1rem;
     --rowGap: 1rem;
-
-    /* tooltip */
-    --tooltipRadius: 0.5rem;
-    --tooltipFontSize: 1.2rem;
-    --tooltipMove: 4px; 
-    --tooltipDuration: 190ms;
-
-    --tooltipBg: var(--dark);
-    --tooltipColor: var(--white);
 }
 
 /*** Dark Mode */
-.dark-mode, [dark-mode], [data-mode="dark"] {
+.dark-mode, [dark-mode], [color-scheme="dark"] {
+    color-scheme: dark;
+
     --bgColor: #000;
     --color: #FFF;
     --colorInverse: #000;
-    --hColor: var(--color);
 
     --inputBg: #181818;
     --inputBgHover: var(--inputBg);
@@ -179,15 +126,13 @@ summary{display:list-item}
     --inputColor: var(--color);
     --inputPlaceholderColor: rgba(255,255,255,.4);
 
-    --buttonColor: var(--color);
-    --buttonColorHover: var(--color);
     --buttonBorderColor: transparent;
     --buttonBorderHover: transparent;
 
     --selectionBg: rgba(255,255,255,.99);
     --selectionText: #000;
 
-    --codeColor: #00F900;
+    --codeColor: var(--green);
     --codeBg: #111;
 
     --hrColor: var(--inputBorderColor);
@@ -195,25 +140,34 @@ summary{display:list-item}
 }
 
 /* ------------------
-  more resets
+    resets
 ------------------ */
-:not(pre) > code, :not(pre) > kbd, :not(pre) > samp { font-size: 1.2rem; font-family: var(--fontMono); white-space: nowrap }
-img,svg,canvas,video,audio,iframe,embed,object,dd { display: block; vertical-align: middle; box-sizing: border-box; max-width: 100%; height: auto }
-iframe{width:100%;border:0}
+*,*::before,*::after {box-sizing:border-box}
+:not(pre) > code,:not(pre) > kbd,:not(pre) > samp { font-size: 1.2rem; font-family: var(--fontMono); white-space: nowrap }
+img,svg,canvas,video,embed,object,dd { display: block; box-sizing: border-box; max-width: 100%; height: auto }
+svg { overflow: visible; height: 100%; pointer-events: none!important }
+iframe{display:block;border:0;max-width:100%}
 dt {font-weight:bold}
 dd {margin-inline-start:4rem}
-figure {margin:0}
-[hidden],[type="hidden"],.hidden {display:none!important;outline:0}
-[disabled],[disabled]:hover,.disabled { opacity:0.6!important; cursor:not-allowed!important }
+figure {margin:0;width:fit-content}
+figcaption { text-align: center; padding: var(--padding); font-size: 0.8em; }
+button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
+[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}
+[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}
+[type="search"]{-webkit-appearance:textfield;appearance:textfield;outline-offset:-2px}
+[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+:is([hidden],[type="hidden"],.hidden) {display:none!important;outline:0}
+:is([disabled],[disabled]:hover,.disabled) { filter: grayscale(100%); opacity: 0.7!important; cursor: not-allowed!important; --buttonColor:var(--white); --buttonColorHover: var(--white) }
 
 /* ------------------
-  basics
+    basics
 ------------------ */
 ::selection { background: var(--selectionBg); color: var(--selectionText) }
 ::-moz-selection { background: var(--selectionBg); color: var(--selectionText) }
 
-html { height: 100%; font-size: 62.5%; scroll-behavior: smooth }
-body { background: var(--bgColor); color: var(--color); font-size: var(--fontSize); line-height: var(--fontLine); letter-spacing: var(--fontSpace); font-weight: var(--fontWeight); font-style: var(--fontStyle); font-family: var(--fontFamily) }
+html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-behavior: var(--scrollBehavior, smooth); scroll-padding-top: var(--scrollPadding, auto) }
+body { margin: 0; background: var(--bgColor); color: var(--color); font: var(--fontStyle) var(--fontWeight) var(--fontSize) var(--fontFamily); line-height: var(--fontLine); letter-spacing: var(--fontSpace) }
 
 #app { display: flex; flex-direction: column; min-height: 100vh }
 main { flex: 1 }
@@ -221,69 +175,83 @@ main { flex: 1 }
 /* ------------------
   typography
 ------------------ */
-h1, h2, h3, h4, h5, h6, 
-.h1,.h2,.h3,.h4,.h5,.h6 { 
-    font-family: var(--hFontFamily); 
-    font-size: var(--hSize); 
-    font-weight: var(--hWeight); 
+:root {
+    --hStyle: normal;
+    --hWeight: 600;
+    --hTransform: inherit;
+    --hAlign: inherit;
+    --hColor: currentColor;
+    --hMargin: 0 0 0.65em;
+    --hTextWrap: balance;
+
+    --h1Size: clamp(calc(var(--hScale) * var(--h1SizeMin, 3.1rem)), calc(var(--hScale) * var(--h1Val, 1.6vw + 2.7rem)), calc(var(--hScale) * var(--h1SizeMax, 4rem)));
+    --h2Size: clamp(calc(var(--hScale) * var(--h2SizeMin, 2.7rem)), calc(var(--hScale) * var(--h2Val, 0.9vw + 2.5rem)), calc(var(--hScale) * var(--h2SizeMax, 3.2rem)));
+    --h3Size: clamp(calc(var(--hScale) * var(--h3SizeMin, 2.4rem)), calc(var(--hScale) * var(--h3Val, 0.7vw + 2.2rem)), calc(var(--hScale) * var(--h3SizeMax, 2.8rem)));
+    --h4Size: clamp(calc(var(--hScale) * var(--h4SizeMin, 2.2rem)), calc(var(--hScale) * var(--h4Val, 0.3vw + 2.1rem)), calc(var(--hScale) * var(--h4SizeMax, 2.4rem)));
+    --h5Size: clamp(calc(var(--hScale) * var(--h5SizeMin, 2rem)),   calc(var(--hScale) * var(--h5Val, 0.3vw + 1.9rem)), calc(var(--hScale) * var(--h5SizeMax, 2.2rem)));
+    --h6Size: clamp(calc(var(--hScale) * var(--h6SizeMin, 1.6rem)), calc(var(--hScale) * var(--h6Val, 0.2vw + 1.6rem)), calc(var(--hScale) * var(--h6SizeMax, 1.7rem)));
+}
+
+h1,.h1 { font-size: var(--hSize, var(--h1Size)); line-height: var(--h1Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h1Space, var(--hSpace)) }
+h2,.h2 { font-size: var(--hSize, var(--h2Size)); line-height: var(--h2Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h2Space, var(--hSpace)) }
+h3,.h3 { font-size: var(--hSize, var(--h3Size)); line-height: var(--h3Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h3Space, var(--hSpace)) }
+h4,.h4 { font-size: var(--hSize, var(--h4Size)); line-height: var(--h4Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h4Space, var(--hSpace)) }
+h5,.h5 { font-size: var(--hSize, var(--h5Size)); line-height: var(--h5Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h5Space, var(--hSpace)) }
+h6,.h6 { font-size: var(--hSize, var(--h6Size)); line-height: var(--h6Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h6Space, var(--hSpace)) }
+
+h1,h2,h3,h4,h5,h6, 
+.h1,.h2,.h3,.h4,.h5,.h6,.hx { 
+    font-family: var(--hFontFamily);
+    font-weight: var(--hWeight);
     font-style: var(--hStyle);
-    line-height: var(--hLine); 
-    letter-spacing: var(--hSpace); 
-    color: var(--hColor); 
-    margin-top: 0; margin-bottom: 0.7rem; 
+    text-transform: var(--hTransform);
+    text-align: var(--hAlign);
+    text-wrap: var(--hTextWrap);
+    color: var(--hColor);
+    margin: var(--hMargin);
 }
 
-h1,.h1 { --hSize: var(--h1Size); --hLine: var(--h1Line) }
-h2,.h2 { --hSize: var(--h2Size); --hLine: var(--h2Line) }
-h3,.h3 { --hSize: var(--h3Size); --hLine: var(--h3Line) }
-h4,.h4 { --hSize: var(--h4Size); --hLine: var(--h4Line) }
-h5,.h5 { --hSize: var(--h5Size); --hLine: var(--h5Line) }
-h6,.h6 { --hSize: var(--h6Size); --hLine: var(--h6Line) }
+.hx { --hTextWrap: inherit; --hMargin: 0; font-size: var(--hxSize, inherit); line-height: var(--hxLine, var(--hLine, var(--fontLine))); letter-spacing: var(--hxSpace, var(--hSpace)) }
 
-@media (max-width: 600px) {
-    :root {
-        --h1Size: 3.1rem;
-        --h2Size: 2.7rem;
-        --h3Size: 2.4rem;
-        --h4Size: 2.2rem;
-        --h5Size: 2rem;
-        --h6Size: 1.6rem;
-
-        --hLine: 1.2;
-        --h1Line: var(--hLine);
-        --h2Line: var(--hLine);
-        --h3Line: var(--hLine);
-        --h4Line: var(--hLine);
-        --h5Line: var(--hLine);
-        --h6Line: var(--hLine);
-    }
-}
-
-p {margin:var(--pMargin)}
+p { margin:var(--pMargin) }
 blockquote { max-width: 90%; margin: 2rem auto; font-style: italic }
 
-a:not(.button) { color:var(--linkColor); cursor:pointer }
-a:not(.button):hover { color:var(--linkHover) }
-a.no-style { text-decoration:none }
+a:not([href]) { cursor: not-allowed }
+a:not(.button) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto) }
+a:not(.button):hover { color: var(--linkHover); text-decoration: var(--linkHoverDecoration, auto) }
+
+.all-states a:not(.button):focus { color: var(--linkFocus, inherit); text-decoration: var(--linkFocusDecoration, auto) }
+.all-states a:not(.button):active { color: var(--linkActive, inherit); text-decoration: var(--linkActiveDecoration, auto) }
+.all-states a:not(.button):not(:hover):visited { color: var(--linkVisited, inherit); text-decoration: var(--linkVisitedDecoration, auto) }
+
+a.no-style { text-decoration: none }
 
 /*** Accessibility */
-*:focus { outline: 0 }
-.a11y *:focus, .a11y a:focus { outline: 2px solid var(--a11yColor, var(--inputFocus)); outline-offset: 1px }
-.a11y-custom *:focus, .a11y-custom a:focus { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent }
+*:focus-visible, *:focus { outline-offset: var(--a11yOffset, 2px) }
+.a11y-off *:focus { outline: 0; box-shadow: none }
+.a11y-custom *:focus, .a11y-custom a:focus { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent; outline-offset: var(--a11yOffset, 2px) }
 
 @supports selector(:focus-visible) {
-    .a11y *:focus-visible, .a11y a:focus-visible { outline: 2px solid var(--a11yColor, var(--inputFocus)); outline-offset: 1px }
-    .a11y-custom *:focus, .a11y-custom a:focus { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent }
+    .a11y-off *:focus-visible { outline: 0; box-shadow: none }
+    .a11y-custom *:focus-visible, .a11y-custom a:focus-visible { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent; outline-offset: var(--a11yOffset, 2px) }
 }
 
-code, kbd, samp {
+.visibility-hidden { visibility: hidden }
+.sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
+.skipTo { position: fixed; z-index: 999; top: var(--padding); left: var(--padding) }
+
+/* if JS Active show el w/ .js -- if JS Disabled show el w/ .no-js */
+:is(html.js .js, html.no-js .no-js):not(html) { display:var(--jsDisplay, inherit)!important } 
+:is(html.js .no-js, html.no-js .js):not(html) { display:none!important }
+
+code, samp {
     padding: var(--inputPadding);
-    margin: var(--inputPadding);
+    margin: var(--inputMargin);
     font-size: 90%;
     white-space: nowrap;
     vertical-align: middle;
     background-color: var(--codeBg);
-    border: 1px solid var(--inputBorderColor);
+    border: 1px solid var(--codeBorderColor, var(--inputBorderColor));
     color: var(--codeColor);
     border-radius: var(--inputRadius);
     overflow:hidden;
@@ -293,191 +261,186 @@ code, kbd, samp {
 code:hover { overflow:auto }
 pre > code { display: block; padding: calc(var(--inputPadding) * 1); white-space: pre }
 
+kbd {
+    display: inline-block;
+    margin: var(--inputMargin);
+    padding: var(--inputPadding);
+    background: var(--inputBg);
+    box-shadow: 0px 0px 10px 0 var(--shadow), 0 0.2rem 0 var(--inputBorderColor);
+    border: 1px solid var(--inputBorderColor);
+    border-radius: var(--inputRadius);
+    color: var(--inputColor);
+    text-align: center;
+    min-width: 3rem;
+}
+
 /* ------------------
   utilities
 ------------------ */
-.fullwidth { width: 100% }
+.fullwidth { --buttonWidth: 100%; --inputWidth: 100%; width: 100% }
 .fullwidth-max { max-width: 100% }
 .fullheight { height: 100% }
 .fullheight-max { max-height: 100% }
 .full { width: 100%; height: 100% }
 .full-max { max-width: 100%; max-height: 100% }
 
+.fitcontent { width: fit-content }
+.fitcontent-height { height: fit-content }
+
 .block { display:block }
 .inline { display: inline; margin: 0 }
 .inline-block { display: inline-block; margin: 0 }
 .center { display: block; text-align: center; margin: 0 auto }
 
-.text-truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.text-clip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .text-start { text-align: start }
 .text-center { text-align: center }
 .text-end { text-align: end }
 .text-justify { text-align: justify }
 .text-normal { font-weight: 400 }
+.text-bold { font-weight: 600 }
 .text-uppercase { text-transform:uppercase }
 .text-lowercase { text-transform:lowercase }
 .text-capitalize { text-transform:capitalize }
-.text-underline { border-bottom: 1px solid currentColor }
+.text-underline { border-block-end: 1px solid currentColor }
 .text-line-through { text-decoration: line-through }
 .text-break-word { overflow-wrap: break-word }
+.text-balance { text-wrap: balance }
 
 .sticky { position: sticky; top: var(--sticky, 0) }
 .sticky-bottom { position: sticky; bottom: var(--sticky, 0) }
 .sticky-none { position: inherit }
 
-/* if JS active show el w/ .js -- if JS disabled show el w/ .no-js */
-:where(html.js .js, html.no-js .no-js):not(html) { display:var(--jsDisplay, inline-block)!important } 
-:where(html.js .no-js, html.no-js .js):not(html) { display:none!important }
-
-.visually-hidden,.visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
-
-.is-green { border-color: var(--green)!important; --inputBorderColor: var(--green); --inputBorderHover: var(--green) }
-.is-red, input:not(:placeholder-shown):invalid { border-color: var(--red)!important; --inputBorderColor: var(--red); --inputBorderHover: var(--red) }
-
-.group-input-button { display: inline-flex; justify-items: center; align-content: center }
-.group-input-button.no-style > * { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor }
-
-@media (max-width: 600px) { 
-    .fullwidth-s { width: 100% }
+@media (max-width: 777px) { 
+    .fullwidth-s { --buttonWidth: 100%; --inputWidth: 100%; width: 100% }
     .fullwidth-max-s { max-width: 100% }
     .fullheight-s { height: 100% }
     .fullheight-max-s { max-height: 100% }
     .full-s { width: 100%; height: 100% }
     .full-max-s { max-width: 100%; max-height: 100% }
 
+    .fitcontent-s { width: fit-content }
+    .fitcontent-height-s { height: fit-content }
+
     .block-s { display: block }
     .inline-s { display: inline; margin: 0 }
     .inline-block-s { display: inline-block; margin: 0 }
     .center-s { display: block; text-align: center; margin: 0 auto }
 
-    .text-truncate-s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .text-clip-s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-s { text-align: start }
     .text-center-s { text-align: center }
     .text-end-s { text-align: end }
     .text-justify-s { text-align: justify }
     .text-normal-s { font-weight: 400 }
+    .text-bold-s { font-weight: 600 }
     .text-uppercase-s { text-transform:uppercase }
     .text-lowercase-s { text-transform:lowercase }
     .text-capitalize-s { text-transform:capitalize }
-    .text-underline-s { border-bottom: 1px solid currentColor }
+    .text-underline-s { border-block-end: 1px solid currentColor }
     .text-line-through-s { text-decoration: line-through }
     .text-break-word-s { overflow-wrap: break-word }
+    .text-balance-s { text-wrap: balance }
 
     .sticky-s { position: sticky; top: var(--sticky, 0) }
     .sticky-bottom-s { position: sticky; bottom: var(--sticky, 0) }
     .sticky-none-s { position: inherit }
 }
 
-@media (min-width: 601px) and (max-width: 1024px) {
-    .fullwidth-m { width: 100% }
+@media (min-width: 778px) and (max-width: 1024px) {
+    .fullwidth-m { --buttonWidth: 100%; --inputWidth: 100%; width: 100% }
     .fullwidth-max-m { max-width: 100% }
     .fullheight-m { height: 100% }
     .fullheight-max-m { max-height: 100% }
     .full-m { width: 100%; height: 100% }
     .full-max-m { max-width: 100%; max-height: 100% }
 
+    .fitcontent-m { width: fit-content }
+    .fitcontent-height-m { height: fit-content }
+
     .block-m { display: block }
     .inline-m { display: inline; margin: 0 }
     .inline-block-m { display: inline-block; margin: 0 }
     .center-m { display: block; text-align: center; margin: 0 auto }
 
-    .text-truncate-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .text-clip-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-m { text-align: start }
     .text-center-m { text-align: center }
     .text-end-m { text-align: end }
     .text-justify-m { text-align: justify }
     .text-normal-m { font-weight: 400 }
+    .text-bold-m { font-weight: 600 }
     .text-uppercase-m { text-transform:uppercase }
     .text-lowercase-m { text-transform:lowercase }
     .text-capitalize-m { text-transform:capitalize }
-    .text-underline-m { border-bottom: 1px solid currentColor }
+    .text-underline-m { border-block-end: 1px solid currentColor }
     .text-line-through-m { text-decoration: line-through }
     .text-break-word-m { overflow-wrap: break-word }
+    .text-balance-m { text-wrap: balance }
 
     .sticky-m { position: sticky; top: var(--sticky, 0) }
     .sticky-bottom-m { position: sticky; bottom: var(--sticky, 0) }
     .sticky-none-m { position: inherit }
 }
 
-@media (min-width: 1599px) { 
-    .fullwidth-l { width: 100% }
-    .fullwidth-max-l { max-width: 100% }
-    .fullheight-l { height: 100% }
-    .fullheight-max-l { max-height: 100% }
-    .full-l { width: 100%; height: 100% }
-    .full-max-l { max-width: 100%; max-height: 100% }
-
-    .block-l { display: block }
-    .inline-l { display: inline; margin: 0 }
-    .inline-block-l { display: inline-block; margin: 0 }
-    .center-l { display: block; text-align: center; margin: 0 auto }
-
-    .text-truncate-l { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-    .text-start-l { text-align: start }
-    .text-center-l { text-align: center }
-    .text-end-l { text-align: end }
-    .text-justify-l { text-align: justify }
-    .text-normal-l { font-weight: 400 }
-    .text-uppercase-l { text-transform:uppercase }
-    .text-lowercase-l { text-transform:lowercase }
-    .text-capitalize-l { text-transform:capitalize }
-    .text-underline-l { border-bottom: 1px solid currentColor }
-    .text-line-through-l { text-decoration: line-through }
-    .text-break-word-l { overflow-wrap: break-word }
-
-    .sticky-l { position: sticky; top: var(--sticky, 0) }
-    .sticky-bottom-l { position: sticky; bottom: var(--sticky, 0) }
-    .sticky-none-l { position: inherit }
-}
+.is-green { border-color: var(--green)!important; --inputBorderColor: var(--green); --inputBorderHover: var(--green) }
+.is-red, input:not(:placeholder-shown):invalid { border-color: var(--red)!important; --inputBorderColor: var(--red); --inputBorderHover: var(--red) }
 
 /* Vertical and Horizontal align */
 .center-axyz { display: grid; place-items: center }
 .center-axyz.full { min-height: 100vh; width: 100% }
-@media (max-width: 600px) { .center-axyz-s { display: grid; place-items: center } .center-axyz-s.full-s  { min-height: 100vh; width: 100% } }
+@media (max-width: 777px) { .center-axyz-s { display: grid; place-items: center } .center-axyz-s.full-s  { min-height: 100vh; width: 100% } }
 @media (min-width: 1024px) { .center-axyz-m { display: grid; place-items: center } .center-axyz-m.full-m { min-height: 100vh; width: 100% } }
-@media (min-width: 1599px) { .center-axyz-l { display: grid; place-items: center } .center-axyz-l.full-l { min-height: 100vh; width: 100% } }
 
 .mob-scroller { display: flex; flex-wrap: nowrap; overflow: hidden; overflow-x: auto; height: auto; width: 100%; scroll-behavior: smooth; -webkit-overflow-scrolling: touch }
 @media (max-width: 1024px) { .mob-scroller::-webkit-scrollbar { display:none } }
 
-@media (max-width: 600px) { .large-only, .only-large  { display:none!important } }
-@media (min-width: 601px) { .small-only, .only-small  { display:none!important } }
+@media (min-width: 1024px) { .small-medium { display: none!important } }
+@media (max-width: 1024px) { .medium-large { display: none!important } }
 
-.no-scrollbars { scrollbar-width:none; -ms-overflow-style:none }
-.no-scrollbars::-webkit-scrollbar { display:none }
-@media (max-width: 600px) { .no-scrollbars-s { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars-s::-webkit-scrollbar { display: none } }
+@media (max-width: 777px) { .large-only  { display:none!important } }
+@media (min-width: 778px) { .small-only  { display:none!important } }
+
+.no-scrollbars { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars::-webkit-scrollbar { display:none }
+@media (max-width: 777px)  { .no-scrollbars-s { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars-s::-webkit-scrollbar { display: none } }
 @media (min-width: 1024px) { .no-scrollbars-m { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars-m::-webkit-scrollbar { display: none } }
-@media (min-width: 1599px) { .no-scrollbars-l { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars-l::-webkit-scrollbar { display: none } }
 
+/** Scroll snap */
 .scroll-snap {
     --scrollDirection: x;
     --scrollType: mandatory;
     --scrollAlign: start;
     --scrollMargin: 1rem;
+    --scrollPadding: 0;
     --scrollStop: normal;
     --scrollJustifyContent: start;
     --scrollAlignItems: center;
     --scrollFlexFlow: row nowrap;
-    --scrollHeight: auto;
-    --scrollWidth: auto;
+    --scrollChildHeight: auto;
+    --scrollChildWidth: 100%;
+    --scrollChildMinWidth: fit-content;
+    --scrollOverflowX: scroll;
+    --scrollOverflowY: hidden;
     display: flex;
-    flex: none;
     flex-flow: var(--scrollFlexFlow);
     gap: var(--scrollMargin);
     justify-content: var(--scrollJustifyContent);
     align-items: var(--scrollAlignItems);
     height: 100%;
     min-height: var(--scrollHeight);
-    overflow: auto;
+    overflow-x: var(--scrollOverflowX);
+    overflow-y: var(--scrollOverflowY);
     counter-reset: item;
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     scroll-margin: var(--scrollMargin);
+    scroll-padding: var(--scrollPadding);
     scroll-snap-stop: var(--scrollStop);
     scroll-snap-type: var(--scrollDirection) var(--scrollType);
 }
 
-.scroll-snap > * { width: var(--scrollWidth); flex: none; scroll-snap-align: var(--scrollAlign) }
-.scroll-snap.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh } 
+.scroll-snap > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+.scroll-snap.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
 .scroll-snap.mandatory { --scrollType: mandatory } /* default */
 .scroll-snap.proximity { --scrollType: proximity }
 .scroll-snap.align-start { --scrollAlign: start }
@@ -485,172 +448,217 @@ pre > code { display: block; padding: calc(var(--inputPadding) * 1); white-space
 .scroll-snap.align-end { --scrollAlign: end }
 .scroll-snap.stop-always { --scrollStop: always } /* default */
 
-/* ------------------
-  tooltips
------------------- */
-[data-tooltip] { overflow: visible; position: relative; cursor: pointer; z-index: 1; isolation: isolate }
+@media (max-width: 777px)  {
+    .scroll-snap-s {
+        --scrollDirection: x;
+        --scrollType: mandatory;
+        --scrollAlign: start;
+        --scrollMargin: 1rem;
+        --scrollPadding: 0;
+        --scrollStop: normal;
+        --scrollJustifyContent: start;
+        --scrollAlignItems: center;
+        --scrollFlexFlow: row nowrap;
+        --scrollChildHeight: auto;
+        --scrollChildWidth: 100%;
+        --scrollChildMinWidth: 100%;
+        --scrollOverflowX: scroll;
+        --scrollOverflowY: hidden;
+        display: flex;
+        flex-flow: var(--scrollFlexFlow);
+        gap: var(--scrollMargin);
+        justify-content: var(--scrollJustifyContent);
+        align-items: var(--scrollAlignItems);
+        height: 100%;
+        min-height: var(--scrollHeight);
+        overflow-x: var(--scrollOverflowX);
+        overflow-y: var(--scrollOverflowY);
+        counter-reset: item;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scroll-margin: var(--scrollMargin);
+        scroll-padding: var(--scrollPadding);
+        scroll-snap-stop: var(--scrollStop);
+        scroll-snap-type: var(--scrollDirection) var(--scrollType);
+    }
 
-[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    padding: 1rem;
-    opacity: 0;
-    pointer-events: none;
-    box-sizing: border-box;
-    background-color: var(--tooltipBg);
-    border-radius: var(--tooltipRadius);
-    color: var(--tooltipColor);
-    font-family: var(--fontFamily);
-    font-size: var(--tooltipFontSize)!important;
-    font-weight: normal;
-    font-style: normal;
-    text-shadow: none;
-    text-indent: 0;
-    text-transform: initial;
-    text-align: center;
-    letter-spacing: normal;
-    line-height: 1.3;
-    white-space: nowrap;
-    transition: all var(--tooltipDuration) ease-in-out var(--tooltipDuration);
+    .scroll-snap-s > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+    .scroll-snap-s.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
+    .scroll-snap-s.mandatory { --scrollType: mandatory } /* default */
+    .scroll-snap-s.proximity { --scrollType: proximity }
+    .scroll-snap-s.align-start { --scrollAlign: start }
+    .scroll-snap-s.align-center { --scrollAlign: center }
+    .scroll-snap-s.align-end { --scrollAlign: end }
+    .scroll-snap-s.stop-always { --scrollStop: always } /* default */
 }
 
-[data-tooltip]::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: 5px solid transparent;
-    border-top-color: var(--tooltipBg);
-    opacity: 0;
-    pointer-events: none;
-    transition: all var(--tooltipDuration) ease-in-out var(--tooltipDuration);
+@media (min-width: 1024px) {
+    .scroll-snap-m {
+        --scrollDirection: x;
+        --scrollType: mandatory;
+        --scrollAlign: start;
+        --scrollMargin: 1rem;
+        --scrollPadding: 0;
+        --scrollStop: normal;
+        --scrollJustifyContent: start;
+        --scrollAlignItems: center;
+        --scrollFlexFlow: row nowrap;
+        --scrollChildHeight: auto;
+        --scrollChildWidth: 100%;
+        --scrollChildMinWidth: 100%;
+        --scrollOverflowX: scroll;
+        --scrollOverflowY: hidden;
+        display: flex;
+        flex-flow: var(--scrollFlexFlow);
+        gap: var(--scrollMargin);
+        justify-content: var(--scrollJustifyContent);
+        align-items: var(--scrollAlignItems);
+        height: 100%;
+        min-height: var(--scrollHeight);
+        overflow-x: var(--scrollOverflowX);
+        overflow-y: var(--scrollOverflowY);
+        counter-reset: item;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scroll-margin: var(--scrollMargin);
+        scroll-padding: var(--scrollPadding);
+        scroll-snap-stop: var(--scrollStop);
+        scroll-snap-type: var(--scrollDirection) var(--scrollType);
+    }
+
+    .scroll-snap-m > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+    .scroll-snap-m.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
+    .scroll-snap-m.mandatory { --scrollType: mandatory } /* default */
+    .scroll-snap-m.proximity { --scrollType: proximity }
+    .scroll-snap-m.align-start { --scrollAlign: start }
+    .scroll-snap-m.align-center { --scrollAlign: center }
+    .scroll-snap-m.align-end { --scrollAlign: end }
+    .scroll-snap-m.stop-always { --scrollStop: always } /* default */
 }
-[data-tooltip]:hover:before,[data-tooltip]:hover:after,[data-tooltip][tooltip-visible]:before,[data-tooltip][tooltip-visible]:after,[data-tooltip]:not([tooltip-nofocus]):focus:before,[data-tooltip]:not([tooltip-nofocus]):focus:after { opacity: 1; pointer-events: none }
-[data-tooltip].font-awesome:after { font-family: FontAwesome, var(--fontFamily) }
 
-[tooltip-break]:after { white-space: pre }
-[tooltip-break][tooltip-length]:after { white-space: pre-line; overflow-wrap: break-word; width: fit-content }
-[tooltip-blunt]:before, [tooltip-blunt]:after { transition: none }
+/** Group inputs */
+.stack { 
+    --buttonMargin: auto; 
+    --buttonHeight: 100%; 
+    --buttonWeight: 400;
+    display: var(--stackDisplay, inline-flex); 
+    justify-content: var(--stackJc, center); 
+    align-items: var(--stackAi, center); 
+    height: var(--stackHeight, inherit);
+    width: var(--stackWidth, inherit);
+    overflow: var(--stackOverflow, initial);
+}
+.stack.no-style > * { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
+.stack.no-style > input:is(:hover,:focus,:active) { border: none }
+.stack:is(.no-style,.presuffix) input:focus { box-shadow: none; outline: none!important; border: none!important }
 
-[tooltip-pos="up"]:hover:after,[tooltip-pos="up"][tooltip-visible]:after,[tooltip-pos="down"]:hover:after, [tooltip-pos="down"][tooltip-visible]:after { transform: translate(-50%, 0) }
-[tooltip-pos="up"]:hover:before,[tooltip-pos="up"][tooltip-visible]:before,[tooltip-pos="down"]:hover:before, [tooltip-pos="down"][tooltip-visible]:before { transform: translate(-50%, 0) }
+.stack.presuffix {
+    --buttonColor: currentColor;
+    background: var(--inputBg);
+    color: var(--inputColor);
+    border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor);
+    border-radius: var(--inputRadius);
+    margin: var(--inputMargin);
+    width: var(--inputWidth, auto);
+}
 
-[tooltip-pos*="-left"]:after { left: 0 }
-[tooltip-pos*="-left"]:before { left: 5px }
-[tooltip-pos*="-right"]:after { right: 0 }
-[tooltip-pos*="-right"]:before { right: 5px }
-[tooltip-pos*="-left"]:hover:after, [tooltip-pos*="-left"][tooltip-visible]:after,[tooltip-pos*="-right"]:hover:after,[tooltip-pos*="-right"][tooltip-visible]:after { transform: translate(0, 0) }
-[tooltip-pos*="-left"]:hover:before, [tooltip-pos*="-left"][tooltip-visible]:before,[tooltip-pos*="-right"]:hover:before,[tooltip-pos*="-right"][tooltip-visible]:before { transform: translate(0, 0) }
-
-[tooltip-pos^="up"]:before, [tooltip-pos^="up"]:after { bottom: 100%; transform-origin: top; transform: translate(0, var(--tooltipMove)) }
-[tooltip-pos^="up"]:after { margin-bottom: 10px }
-[tooltip-pos="up"]:before, [tooltip-pos="up"]:after { left: 50%; transform: translate(-50%, var(--tooltipMove)) }
-
-[tooltip-pos^="down"]:before, [tooltip-pos^="down"]:after { top: 100%; transform: translate(0, calc(var(--tooltipMove) * -1)) }
-[tooltip-pos^="down"]:after { margin-top: 10px }
-[tooltip-pos^="down"]:before { width: 0; height: 0; border: 5px solid transparent; border-bottom-color: var(--tooltipBg) }
-[tooltip-pos="down"]:after, [tooltip-pos="down"]:before { left: 50%; transform: translate(-50%, calc(var(--tooltipMove) * -1)) }
-
-[tooltip-pos="left"]:hover:after, [tooltip-pos="left"][tooltip-visible]:after, [tooltip-pos="right"]:hover:after, [tooltip-pos="right"][tooltip-visible]:after { transform: translate(0, -50%) }
-[tooltip-pos="left"]:hover:before, [tooltip-pos="left"][tooltip-visible]:before, [tooltip-pos="right"]:hover:before, [tooltip-pos="right"][tooltip-visible]:before { transform: translate(0, -50%) }
-[tooltip-pos="left"]:after, [tooltip-pos="left"]:before { right: 100%; top: 50%; transform: translate(var(--tooltipMove), -50%) }
-[tooltip-pos="left"]:after { margin-right: 10px }
-[tooltip-pos="left"]:before { width: 0; height: 0; border: 5px solid transparent; border-left-color: var(--tooltipBg) }
-
-[tooltip-pos="right"]:after, [tooltip-pos="right"]:before { left: 100%; top: 50%; transform: translate(calc(var(--tooltipMove) * -1), -50%) }
-[tooltip-pos="right"]:after { margin-left: 10px }
-[tooltip-pos="right"]:before { width: 0; height: 0; border: 5px solid transparent; border-right-color: var(--tooltipBg) }
-
-[tooltip-length]:after { white-space: normal }
-[tooltip-length="small"]:after { width: 80px }
-[tooltip-length="medium"]:after { width: 150px }
-[tooltip-length="large"]:after { width: 260px }
-[tooltip-length="xlarge"]:after { width: 380px }
-[tooltip-length="fit"]:after { width: 100% }
-[tooltip-length="fit-content"]:after { width: fit-content }
-@media (max-width: 1024px) { [tooltip-length="xlarge"]:after { width: 90vw }  }
+.stack.presuffix:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
+.stack.presuffix:focus-within { border-color: var(--inputBorderActive); color: var(--inputColorActive); background: var(--inputBgActive) }
+.stack.presuffix > * { padding: var(--inputPadding); margin: 0; font-size: var(--stackFontSize, inherit) }
+.stack.presuffix > label { white-space: nowrap; font-weight: normal }
+.stack.presuffix > :where(label,button,span):first-child { border: 0; border-inline-end: inherit }
+.stack.presuffix > :where(label,button,span):last-child { border: 0; border-inline-start: inherit }
 
 /* ------------------
   buttons
 ------------------ */
-button,.button,[type=button],[type=submit],[type=reset] {
+button,.button,[type="button"],[type="submit"],[type="reset"] {
     padding: var(--buttonPadding);
     margin: var(--buttonMargin);
+    height: var(--buttonHeight, fit-content);
+    width: var(--buttonWidth);
     border-radius: var(--buttonRadius);
     border: var(--buttonBorderWidth) var(--buttonBorderStyle) var(--buttonBorderColor);
     box-shadow: var(--buttonShadow);
     background: var(--buttonBg);
-    font-size: var(--buttonFontSize);
-    font-weight: var(--buttonFontWeight);
+    font-size: var(--buttonSize);
+    font-weight: var(--buttonWeight);
+    letter-spacing: var(--buttonSpacing, .03em);
+    line-height: var(--buttonLineHeight, 1);
     color: var(--buttonColor);
-    letter-spacing: .03em;
-    text-align: center;
+    text-align: var(--buttonAlign, center);
+    text-transform: var(--buttonTextTransform, inherit);
     white-space: nowrap;
     font-style: inherit;
     text-decoration: none;
     position: relative;
     display: inline-flex;
-    justify-content: center;
+    justify-content: var(--buttonAlign, center);
     align-items: center;
     vertical-align: middle;
-    height: fit-content;
     cursor: pointer;
     user-select: none;
 }
 
-:where(button,.button,[type=button],[type=submit],[type=reset]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover) }
+:where(button,.button,[type="button"],[type="submit"],[type="reset"]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover) }
 
-.has-shadow:where(button,.button,[type=button],[type=submit],[type=reset]) { box-shadow: 0 5px 25px -5px rgba(0,0,0,0.2) }
-.has-shadow:where(button,.button,[type=button],[type=submit],[type=reset]):hover { transform: translateY(2px); box-shadow: 0 2px 7px 1px rgba(0,0,0,0.1) }
-.has-icon:where(button,.button,[type=button],[type=submit],[type=reset]) { display:inline-flex; align-items:center; justify-content:center }
-.has-icon:where(button,.button,[type=button],[type=submit],[type=reset]) i { font-size: max(15px, var(--buttonFontSize)) }
+.has-icon { display: inline-flex; align-items: center; justify-content: center; gap: var(--buttonPadding) }
+.has-icon i { display: grid; place-items: center; font-size: max(15px, var(--buttonSize)); pointer-events: none }
+.has-icon i > svg { display: inline; height: var(--icoSizeW, var(--icoSize)); width: var(--icoSizeW, var(--icoSize)) }
 
-.has-icon:where(button,.button,[type=button],[type=submit],[type=reset]) i:first-child:not(:last-child) { padding-right:1rem }
-.has-icon:where(button,.button,[type=button],[type=submit],[type=reset]) i:last-child:not(:first-child) { padding-left:1rem }
+.is-small:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonSize: min(0.75em, 1.4rem) }
+.is-large:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonSize:1.45em }
 
-.is-small:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonFontSize: min(0.75em, 1.4rem) }
-.is-large:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonFontSize:1.45em }
+.is-pill:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonRadius:100vw }
 
-.is-pill:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonRadius:100vw }
-.is-circle:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonRadius:100vw; padding:1em; width:1em; height:1em }
-.is-square:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonRadius:0 }
+.is-circle:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonRadius: 100vw; aspect-ratio: 1 / 1; }
+.is-circle:not(.has-icon):where(button,.button,[type="button"],[type="submit"],[type="reset"]) { padding: 1em; width: 1em; height: 1em }
 
-.is-loading:where(button,.button,[type=button],[type=submit],[type=reset]):after {
+.is-square:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonRadius:0 }
+
+.is-loading:where(span,button,.button,[type="button"],[type="submit"],[type="reset"]):after {
     content: "";
     animation: loading 500ms infinite linear;
     border: 2px solid var(--buttonColor);
     border-radius: 100%;
-    border-right-color: transparent;
-    border-top-color: transparent;
+    border-inline-start-color: transparent;
+    border-block-start-color: transparent;
     display: block;
     height: 1em;
     width: 1em;
     position: relative;
 }
 
-.is-loading:where(button,.button,[type=button],[type=submit],[type=reset]):not(:empty):after { margin-left: 1rem }
+.is-loading:where(span,button,.button,[type="button"],[type="submit"],[type="reset"]):not(:empty):after { margin-inline-start: 1rem }
 
 .is-unset { all: unset }
-.is-blank:where(button,.button,[type=button],[type=submit],[type=reset]) { background: transparent; --buttonBorderColor: transparent; --buttonBorderHover: var(--buttonBorderColor); --buttonColor: currentColor; --buttonColorHover: currentColor }
-.is-outline:where(button,.button,[type=button],[type=submit],[type=reset]) { background: transparent; --buttonColor: var(--buttonBg); --buttonBorderColor: var(--buttonBg) }
-.is-outline:where(button,.button,[type=button],[type=submit],[type=reset]):not(.is-white,.is-black,.is-currentcolor):hover { background: var(--buttonBg); --buttonColor: var(--white) }
-.is-custom:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonBg: transparent; --buttonBorderColor: transparent; --buttonBorderHover: transparent; --buttonColor: currentColor; --buttonColorHover: currentColor }
+.is-link:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonBg: transparent; --buttonColor: currentColor; --buttonPadding: 0; --buttonMargin: 0; --buttonWeight: inherit; --buttonSize: inherit }
+.is-blank:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { background: transparent; --buttonBorderColor: transparent; --buttonBorderHover: var(--buttonBorderColor); --buttonColor: currentColor; --buttonColorHover: currentColor }
+.is-custom:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonBg: transparent; --buttonBorderColor: transparent; --buttonBorderHover: transparent; --buttonColor: currentColor; --buttonColorHover: currentColor }
 
-.is-white:where(button,.button,[type=button],[type=submit],[type=reset]):not(.is-outline) { --buttonBg:var(--white); --buttonBgHover:var(--buttonBg); --buttonColor:var(--black); 
+.is-outline:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { background: transparent; --buttonColor: var(--buttonBg); --buttonBorderColor: currentColor }
+.is-outline:where(button,.button,[type="button"],[type="submit"],[type="reset"]):not(.is-white,.is-black,.is-currentcolor):hover { background: var(--buttonBg); --buttonColor: var(--buttonColorHover) }
+
+.is-white:where(button,.button,[type="button"],[type="submit"],[type="reset"]):not(.is-outline) { --buttonBg:var(--white); --buttonBgHover:var(--buttonBg); --buttonColor:var(--black); 
     --buttonColorHover: var(--black) }
-.is-black:where(button,.button,[type=button],[type=submit],[type=reset]):not(.is-outline) { --buttonBg:var(--black); --buttonBgHover:var(--buttonBg); --buttonColor:var(--white) }
+.is-black:where(button,.button,[type="button"],[type="submit"],[type="reset"]):not(.is-outline) { --buttonBg:var(--black); --buttonBgHover:var(--buttonBg); --buttonColor:var(--white) }
 
-.is-currentcolor.is-outline:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonColor: currentColor; --buttonBorderColor: var(--buttonColor); --buttonColorHover: var(--buttonColor);  --buttonBorderHover: var(--buttonColor) }
-.is-white.is-outline:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonColor: var(--white); --buttonBorderColor: var(--white);--buttonColorHover: var(--white);  --buttonBorderHover: var(--white) }
-.is-black.is-outline:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonColor: var(--black); --buttonBorderColor: var(--black); --buttonColorHover: var(--black); --buttonBorderHover: var(--black) }
+.is-currentcolor.is-outline:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonColor: currentColor; --buttonBorderColor: var(--buttonColor); --buttonColorHover: var(--buttonColor);  --buttonBorderHover: var(--buttonColor) }
+.is-white.is-outline:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonColor: var(--white); --buttonBorderColor: var(--white);--buttonColorHover: var(--white);  --buttonBorderHover: var(--white) }
+.is-black.is-outline:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonColor: var(--black); --buttonBorderColor: var(--black); --buttonColorHover: var(--black); --buttonBorderHover: var(--black) }
 
-:where(.is-primary,.is-blue,.is-green,.is-yellow,.is-red):where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonBg:var(--primary); --buttonBgHover:var(--buttonBg); --buttonBorderColor:var(--buttonBg); --buttonBorderColorHover:var(--buttonBg) }
+:where(.is-primary,.is-blue,.is-green,.is-yellow,.is-red,.is-orange,.is-purple):where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonBg:var(--primary); --buttonBgHover:var(--buttonBg); --buttonBorderColor:var(--buttonBg); --buttonBorderColorHover:var(--buttonBg) }
+:where(.is-green,.is-yellow,.is-red,.is-orange):where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonColor: var(--black) }
 
-.is-primary:where(button,.button,[type=button],[type=submit],[type=reset]) { --buttonBg: var(--primary) }
-.is-blue:where(button,.button,[type=button],[type=submit],[type=reset])    { --buttonBg: var(--blue) }
-.is-green:where(button,.button,[type=button],[type=submit],[type=reset])   { --buttonBg: var(--green) }
-.is-yellow:where(button,.button,[type=button],[type=submit],[type=reset])  { --buttonBg: var(--yellow) }
-.is-red:where(button,.button,[type=button],[type=submit],[type=reset])     { --buttonBg: var(--red) }
+.is-primary:where(button,.button,[type="button"],[type="submit"],[type="reset"]) { --buttonBg: var(--primary) }
+.is-blue:where(button,.button,[type="button"],[type="submit"],[type="reset"])    { --buttonBg: var(--blue); --buttonColorHover: var(--white) }
+.is-green:where(button,.button,[type="button"],[type="submit"],[type="reset"])   { --buttonBg: var(--green); --buttonColorHover: var(--black) }
+.is-yellow:where(button,.button,[type="button"],[type="submit"],[type="reset"])  { --buttonBg: var(--yellow); --buttonColorHover: var(--black) }
+.is-red:where(button,.button,[type="button"],[type="submit"],[type="reset"])     { --buttonBg: var(--red); --buttonColorHover: var(--black) }
+.is-orange:where(button,.button,[type="button"],[type="submit"],[type="reset"])  { --buttonBg: var(--orange); --buttonColorHover: var(--black) }
+.is-purple:where(button,.button,[type="button"],[type="submit"],[type="reset"])  { --buttonBg: var(--purple) }
+
+.is-blue:where(button,.button,[type="button"],[type="submit"],[type="reset"]):not(.is-outline) { --buttonColor: var(--white) }
 
 /** Radio checkbox switch */
 input[type="checkbox"],
@@ -668,18 +676,16 @@ input[type="radio"] {
     cursor: pointer;
     border: 1px solid var(--bc, var(--inputBorderColor));
     background: var(--b, var(--inputBgColor));
-
 }
 
 input[type="checkbox"]:after,
 input[type="radio"]:after {
     content: "";
     display: block;
+    position: absolute;
     left: 0;
     top: 0;
-    position: absolute;
     transition: opacity var(--d-o, 0.2s), transform var(--d-t, 0.3s) var(--d-t-e, ease);
-    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
 }
 
 input[type="checkbox"]:checked,
@@ -688,11 +694,11 @@ input[type="radio"]:checked {
     --bc: var(--inputActive);
     --d-o: 100ms;
     --d-t: 250ms;
-    --d-t-e: var(--easeInOutSine);
+    --d-t-e: ease-in-out;
 }
 
 /* Disabled */
-input[type="checkbox"]:disabled,input[type="radio"]:disabled { filter: grayscale(100%); cursor: not-allowed; opacity: .9 }
+input[type="checkbox"]:disabled,input[type="radio"]:disabled { filter: grayscale(100%); cursor: not-allowed; opacity: .7 }
 input[type="checkbox"]:disabled:checked,input[type="radio"]:disabled:checked { filter: grayscale(100%) }
 input[type="checkbox"]:disabled + label, input[type="radio"]:disabled + label { cursor: not-allowed }
 
@@ -710,7 +716,7 @@ input[type="radio"] + label {
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
-    margin-left: 4px;
+    margin-inline-start: 4px;
     user-select: none;
 }
 
@@ -720,8 +726,8 @@ input[type="checkbox"]:not(.switch):after {
     width: 5px;
     height: 9px;
     border: 1px solid var(--inputActiveInner);
-    border-top: 0;
-    border-left: 0;
+    border-block-start: 0;
+    border-inline-start: 0;
     left: 7px;
     top: 4.5px;
     transform: rotate(43deg);
@@ -741,7 +747,7 @@ input[type="checkbox"].switch:after {
 }
 
 input[type="checkbox"].switch:checked { --ab: var(--inputActiveInner); --x: 17px }
-input[type="checkbox"].switch:disabled:not(:checked):after { opacity: .6 }
+input[type="checkbox"].switch:disabled:not(:checked):after { opacity: .7 }
 
 /* Radio */
 input[type="radio"] { border-radius: 100vw }
@@ -757,6 +763,71 @@ input[type="radio"]:after {
 
 input[type="radio"]:checked { --s: .5 }
 
+/**** 
+ * Toggle token
+ * */
+.toggle-token, .toggle-token legend { all: unset }
+.toggle-token input:where([type="radio"],[type="checkbox"]) { clip: rect(0,0,0,0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
+
+.toggle-token {
+    --tokenBg: var(--buttonBg);
+    --tokenColor: var(--buttonColor);
+    --tokenBorder: var(--buttonBorderColor);
+    --tokenRadius: var(--buttonRadius);
+    --tokenPadding: var(--buttonPadding);
+    --tokenMargin: var(--buttonMargin);
+
+    --tokenBgHover: var(--buttonBgHover);
+    --tokenColorHover: var(--buttonColorHover);
+    --tokenBorderHover: var(--buttonBorderHover);
+
+    --tokenBgActive: var(--buttonColor);
+    --tokenColorActive: var(--buttonBg);
+    --tokenBorderActive: var(--inputBorderActive);
+}
+
+.toggle-token label,
+.toggle-token input:where([type="radio"],[type="checkbox"]) + label {
+    display: var(--tokenDisplay, inline-flex);
+    flex-direction: var(--tokenDirection, row);
+    background: var(--tokenBg);
+    color: var(--tokenColor);
+    font-size: inherit;
+    font-weight: var(--tokenFontWeight, 400);
+    letter-spacing: var(--tokenSpace, var(--fontSpace));
+    line-height: var(--tokenLine, var(--fontLine));
+    border: 1px solid var(--tokenBorder);
+    border-radius: var(--tokenRadius, 100vw);
+    padding: var(--tokenPadding); 
+    margin: var(--tokenMargin);
+    cursor: pointer;
+    position: relative;
+}
+
+.toggle-token label:hover,
+.toggle-token input:where([type="radio"],[type="checkbox"]):hover + label { 
+    background: var(--tokenBgHover); 
+    color: var(--tokenColorHover); 
+    border-color: var(--tokenBorderHover)
+}
+
+.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):checked),
+.toggle-token input:where([type="radio"],[type="checkbox"]):checked + label { 
+    background: var(--tokenBgActive); 
+    color: var(--tokenColorActive); 
+    border-color: var(--tokenBorderActive); 
+    font-weight: var(--tokenFontWeight)
+}
+
+.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled)),
+.toggle-token input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled) + label {
+    filter: grayscale(100%); 
+    cursor: not-allowed; 
+    opacity: var(--tokenOpacity, 0.3);
+    text-decoration: var(--tokenTextDec, line-through);
+    pointer-events: none;
+}
+
 /* ------------------
   forms
 ------------------ */
@@ -764,6 +835,7 @@ input[type="radio"]:checked { --s: .5 }
 
 input[type="color"],
 input[type="date"],
+input[type="datetime"],
 input[type="datetime-local"],
 input[type="email"],
 input[type="file"],
@@ -778,17 +850,20 @@ input[type="url"],
 input[type="week"],
 input[type="color"],
 input[inputmode],
+input[list],
 select,
 textarea {
-    width: 100%;
     padding: var(--inputPadding);
     margin: var(--inputMargin);
     border-radius: var(--inputRadius);
     border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor);
+    box-shadow: var(--inputShadow);
     background-color: var(--inputBg);
     font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
     color: var(--inputColor);
-    box-shadow: var(--inputShadow);
+    text-align: var(--inputAlign, start);
+    width: var(--inputWidth, 100%);
     transition: border 200ms ease-out;
     -webkit-appearance: none;
     appearance: none;
@@ -796,6 +871,7 @@ textarea {
 
 input[type="color"]:hover, 
 input[type="date"]:hover,
+input[type="datetime"]:hover,
 input[type="datetime-local"]:hover, 
 input[type="email"]:hover,
 input[type="file"]:hover, 
@@ -810,6 +886,7 @@ input[type="url"]:hover,
 input[type="week"]:hover,
 input[type="color"]:hover,
 input[inputmode]:hover,
+input[list]:hover,
 select:hover,
 textarea:hover {
     background-color: var(--inputBgHover);
@@ -818,6 +895,7 @@ textarea:hover {
 
 input[type="color"]:focus, 
 input[type="date"]:focus,
+input[type="datetime"]:focus,
 input[type="datetime-local"]:focus, 
 input[type="email"]:focus,
 input[type="file"]:focus, 
@@ -832,42 +910,44 @@ input[type="url"]:focus,
 input[type="week"]:focus,
 input[type="color"]:focus,
 input[inputmode]:focus,
+input[list]:focus,
 select:focus, 
 textarea:focus {
     background-color: var(--inputBgActive);
-    border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderActive, var(--inputBorderHover));
+    border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderActive, inherit);
 }
 
-input[type=color] { height:4rem; min-width:6em; padding:calc(.25rem - 1px) 0.5rem; display:block; width:auto; cursor:pointer }
+input[type="color"] { height:4rem; min-width:6em; padding:calc(.25rem - 1px) 0.5rem; display:block; width:auto; cursor:pointer }
 
-input[type=file] { --inputBorderWidth: 2px; --inputBorderStyle: dashed; display:block; padding: 0; line-height: 2.4; cursor:pointer; width: fit-content; height: auto }
-input[type=file]::file-selector-button { border: 0; border-right: 1px solid var(--inputBorderColor); padding: .2em .4em; margin-right: var(--padding); border-radius: 0; background: var(--inputBgActive); color: currentColor; display: inline-block; height: 100% }
+input[type="file"] { --inputBorderWidth: 2px; --inputBorderStyle: dashed; display:block; padding: 0; line-height: 2.4; cursor:pointer; width: fit-content; height: auto }
+input[type="file"]::file-selector-button { border: 0; border-inline-end: 1px solid var(--inputBorderColor); padding: .2em .4em; margin-inline-end: var(--padding); border-radius: 0; background: var(--inputBgActive); color: currentColor; display: inline-block; height: 100% }
 
-input[type=range] { height: 25px; margin: 10px 0; width: 100%; background: transparent; -webkit-appearance: none; appearance: none }
-input[type=range]::-moz-range-track              { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
-input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
+input[type="range"] { height: 25px; margin: 10px 0; width: 100%; background: transparent; -webkit-appearance: none; appearance: none }
+input[type="range"]::-moz-range-track              { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
+input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
 
-input[type=range]::-moz-range-thumb     { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-top: -7px }
-input[type=range]::-webkit-slider-thumb { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-top: -7px }
+input[type="range"]::-moz-range-thumb     { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -7px }
+input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -7px }
 
 textarea { min-height: 6.5rem; padding: var(--inputPadding); border-radius: var(--textareaRadius, var(--inputRadius)) }
 textarea.resize-vertical { resize: vertical }
 textarea.resize-horizontal { resize: horizontal }
-label, legend { display: inline-flex; margin-bottom: var(--inputMargin); font-weight: 600; align-items: center }
+label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--inputMargin); font-weight: 600; align-items: center }
 fieldset { border: 1px solid var(--inputBorderColor); border-radius: var(--inputRadius) }
 legend { padding: var(--inputPadding) }
 option { padding: 5px; color: var(--inputColor) }
-label span { color: var(--color); margin: 0 0.5rem; font-weight: normal }
 :is(input,textarea).is-blank { border:none!important; background:transparent }
 
 select {
     background-image: linear-gradient(45deg, transparent 50%, var(--inputBorderColor) 50%), linear-gradient(135deg, var(--inputBorderColor) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderColor), var(--inputBorderColor));
-    background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%, calc(100% - 45px) 50%;
-    background-size: 5px 5px, 5px 5px, 1px 90%;
+    background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%, calc(100% - 40px) 50%;
+    background-size: 5px 5px, 5px 5px, 1px 100%;
     background-repeat: no-repeat;
     color: var(--inputColor);
-    padding-right: 45px;
+    padding-inline-end: 45px;
 }
+
+[dir="rtl"] select { padding-inline-start: 53px }
 
 select:required:invalid { color:var(--inputPlaceholderColor) }
 select:hover { color: var(--inputColor); background-image: linear-gradient(45deg, transparent 50%, var(--inputBorderHover) 50%), linear-gradient(135deg, var(--inputBorderHover) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderHover), var(--inputBorderHover)) }
@@ -879,12 +959,13 @@ select:-moz-focusring { color:transparent; text-shadow: 0 0 0 var(--color) }
 ------------------ */
 ul { list-style: disc inside }
 ol { list-style: decimal inside }
-ul, ol { padding-left: 0; margin-top: 0 }
+ul, ol { padding-inline-start: 0; margin-block-start: 0 }
 ul ul, ul ol, ol ol, ol ul { margin: 1.5rem 0 1.5rem 3rem; font-size: 100% }
-li { margin-bottom: var(--margin) }
+li { margin-block-end: var(--liMargin, var(--margin)) }
 
 .inline li { display: inline-block; list-style: none; margin: 0; padding: 0 }
 ul.no-style, ol.no-style { list-style: none; margin: 0; padding: 0 }
+ul.no-style.inside, ol.no-style.inside { --liMargin: 0 }
 ul.no-style ul, ol.no-style ol {list-style:none}
 ul.indent, ol.indent { margin: 1.5rem 0 1.5rem 3rem }
 
@@ -900,405 +981,376 @@ ul.outside,ol.outside {list-style-position:outside}
 /* ---------------------
   hr - horizontal rules
 --------------------- */
-hr { margin: var(--hrMargin) auto; background-color: var(--hrColor); border: 0 none; width: 95% }
+hr { margin: var(--hrMargin) auto; background-color: var(--hrColor); border: 0 none }
 hr:not([size]) { height: 1px }
-hr.full { width: 100% }
 hr.gradient { background-color: transparent; background-image: linear-gradient(to right, var(--hrGradient) 0%, var(--hrColor) 50%, var(--hrGradient) 100%) }
 
-/* Line w/ text: --- text --- */
-.text-hr { display: flex; align-items: center; text-align: center; margin: calc(var(--margin) * 1) auto }
-.text-hr::before, .text-hr::after { content: ""; flex: 1; border-bottom: 1px solid var(--inputBorderColor) }
-.text-hr::before { margin-right: var(--padding) }
-.text-hr::after { margin-left: var(--padding) }
+/* .text-hr:  --- text --- // .text-hre: text --- // .text-hrs: --- text */
+.text-hr, .text-hre, .text-hrs { display: flex; align-items: center; text-align: center; margin: var(--hrMargin) auto }
+.text-hr::before, .text-hr::after, .text-hre::before, .text-hrs::after { content: ""; flex: 1; border-block-end: 1px solid var(--hrColor) }
+.text-hr::after, .text-hrs::after { margin-inline-start: var(--padding) }
+.text-hr::before, .text-hre::before { margin-inline-end: var(--padding) }
 
 /* ------------------
   tables
 ------------------ */
-table { display: block; overflow-x: auto; margin: 0 auto; white-space: nowrap; max-width: -moz-fit-content; max-width: fit-content }
-th, td { padding: var(--padding); text-align: start; border-bottom: 1px solid var(--inputBorderColor) }
+table {
+    --tableColor: currentColor;
+    --tableBg: var(--inputBg);
+    --tableStrip: var(--inputBg);
+    --tablePadding: var(--inputPadding);
+    --tableBorderWidth: var(--inputBorderWidth);
+    --tableBorderStyle: var(--inputBorderStyle);
+    --tableBorderColor: var(--inputBorderColor);
+    --tableBorder: var(--tableBorderWidth) var(--tableBorderStyle) var(--tableBorderColor);
+    display: block; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    max-width: -moz-fit-content; 
+    max-width: fit-content;
+    border-spacing: 0;
+    font-size: 1.4rem;
+    margin: var(--margin);
+}
 
-table.is-bordered { border: 1px solid var(--inputBorderColor); border-radius: var(--radius) }
-table.is-bordered th { background-color: var(--inputBorderColor) }
-table.is-bordered th, table.is-bordered td { border-bottom: 1px solid var(--inputBorderColor) }
-table.is-bordered > tbody > tr:last-child td { border-bottom: none }
-table.is-striped tbody tr:nth-child(2n) { background-color: var(--inputBorderColor) }
-table.is-striped td { border:none }
+table caption { margin: var(--margin) }
+table tr td { padding: var(--tablePadding); min-width: 150px; vertical-align: middle; border-block-end: var(--tableBorder) }
+table tr:last-child td { border-block-end: 0 }
+
+table th {
+    position: relative;
+    color: var(--tableColor);
+    text-transform: uppercase;
+    padding: var(--tablePadding);
+    text-align: start;
+    vertical-align: middle;
+    border-block-start: var(--tableBorder);
+    border-block-end: var(--tableBorder);
+    overflow: hidden;
+    font-weight: 400;
+    letter-spacing: 0
+}
+
+table thead th { background: var(--tableBg) }
+table th:first-child { border-radius: var(--radius) 0 0 var(--radius); border-inline-start: var(--tableBorder) }
+table th:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-inline-end: var(--tableBorder) }
+
+table.is-striped tr { border:0 }
+table.is-striped tbody tr:nth-child(2n) td { background: var(--tableStrip); }
+
+table.is-hover tbody tr:hover { background: var(--tableBg); border-radius: var(--radius) }
+
+table:where(.is-sticky-head,.is-sticky-foot) { overflow: unset }
+table.is-sticky-head thead { position: sticky; top: var(--sticky, .2rem); z-index: 2 }
+table.is-sticky-foot tfoot { position: sticky; bottom: var(--sticky, .2rem); z-index: 1; background: var(--bgColor) }
+
+table.has-borders { border: var(--tableBorder) }
+table.has-borders th { border-radius: 0; border:0 }
+table.has-borders td:not(:last-of-type) { border-inline-end: var(--tableBorder) }
 
 /* ------------------
   css grid
 ------------------ */
-x-grid, [x-grid] { display: grid; gap: var(--rowGap, 1rem) var(--columnGap, 1rem) }
-
-x-grid {
-    grid-template-columns: var(--grid-tc); /* default columns */ 
+:where(x-grid,[x-grid]) { 
     --grid-mm: 200px, 1fr; /* auto-fit/fill minmax */
     --grid-tc: repeat(4, minmax(0,1fr)); /* template columns */
     --grid-cs: 1; /* column start */
     --grid-ce: -1; /* column end */
     --grid-rs: 1; /* row start */
     --grid-re: -1; /* row end */
+
+    display: grid; 
+    gap: var(--rowGap, 1rem) var(--columnGap, 1rem);
+    grid-template-columns: var(--grid-tc); /* default columns */ 
 }
 
-x-grid img { object-fit: contain; max-width: 100% }
-x-grid > * { display: block; appearance: none; -webkit-appearance: none }
+:where(x-grid,[x-grid]) img { object-fit: contain; max-width: 100% }
+:where(x-grid,[x-grid]) > * { appearance: none; -webkit-appearance: none }
 
-x-grid[columns="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-x-grid[columns="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
-x-grid[columns="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
-x-grid[columns="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
-x-grid[columns="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
-x-grid[columns="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
-x-grid[columns="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
-x-grid[columns="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
-x-grid[columns="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
-x-grid[columns="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
-x-grid[columns="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
-x-grid[columns="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
+[columns="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+[columns="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
+[columns="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
+[columns="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
+[columns="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
+[columns="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
+[columns="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
+[columns="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
+[columns="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
+[columns="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
+[columns="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
+[columns="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
 
-x-grid[columns="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
-x-grid[columns="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
-x-grid[columns="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-x-grid[columns="1f"] > * { grid-column: 1 / -1 }
+[columns="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
+[columns="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
+[columns="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+[columns="1f"] > * { grid-column: 1 / -1 }
+
+[columns="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+[columns="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+[columns="stack"] > *:first-child { z-index: 1 }
 
 /*** Grid Column - X axis */
-x-grid > *[span^="1"] { --grid-cs: 1 }
-x-grid > *[span^="2"] { --grid-cs: 2 }
-x-grid > *[span^="3"] { --grid-cs: 3 }
-x-grid > *[span^="4"] { --grid-cs: 4 }
-x-grid > *[span^="5"] { --grid-cs: 5 }
-x-grid > *[span^="6"] { --grid-cs: 6 }
-x-grid > *[span^="7"] { --grid-cs: 7 }
-x-grid > *[span^="8"] { --grid-cs: 8 }
-x-grid > *[span^="9"] { --grid-cs: 9 }
-x-grid > *[span^="10"] { --grid-cs: 10 }
-x-grid > *[span^="11"] { --grid-cs: 11 }
-x-grid > *[span^="12"] { --grid-cs: 12 }
+:where(x-grid,[x-grid]) > *[span^="1"] { --grid-cs: 1 }
+:where(x-grid,[x-grid]) > *[span^="2"] { --grid-cs: 2 }
+:where(x-grid,[x-grid]) > *[span^="3"] { --grid-cs: 3 }
+:where(x-grid,[x-grid]) > *[span^="4"] { --grid-cs: 4 }
+:where(x-grid,[x-grid]) > *[span^="5"] { --grid-cs: 5 }
+:where(x-grid,[x-grid]) > *[span^="6"] { --grid-cs: 6 }
+:where(x-grid,[x-grid]) > *[span^="7"] { --grid-cs: 7 }
+:where(x-grid,[x-grid]) > *[span^="8"] { --grid-cs: 8 }
+:where(x-grid,[x-grid]) > *[span^="9"] { --grid-cs: 9 }
+:where(x-grid,[x-grid]) > *[span^="10"] { --grid-cs: 10 }
+:where(x-grid,[x-grid]) > *[span^="11"] { --grid-cs: 11 }
+:where(x-grid,[x-grid]) > *[span^="12"] { --grid-cs: 12 }
 
-x-grid > *[span$="+1"], x-grid > *[span="1"] { --grid-ce: 1 }
-x-grid > *[span$="+2"], x-grid > *[span$="-1"], x-grid > *[span="2"] { --grid-ce: 2 }
-x-grid > *[span$="+3"], x-grid > *[span$="-2"], x-grid > *[span="3"] { --grid-ce: 3 }
-x-grid > *[span$="+4"], x-grid > *[span$="-3"], x-grid > *[span="4"] { --grid-ce: 4 }
-x-grid > *[span$="+5"], x-grid > *[span$="-4"], x-grid > *[span="5"] { --grid-ce: 5 }
-x-grid > *[span$="+6"], x-grid > *[span$="-5"], x-grid > *[span="6"] { --grid-ce: 6 }
-x-grid > *[span$="+7"], x-grid > *[span$="-6"], x-grid > *[span="7"] { --grid-ce: 7 }
-x-grid > *[span$="+8"], x-grid > *[span$="-7"], x-grid > *[span="8"] { --grid-ce: 8 }
-x-grid > *[span$="+9"], x-grid > *[span$="-8"], x-grid > *[span="9"] { --grid-ce: 9 }
-x-grid > *[span$="+10"], x-grid > *[span$="-9"], x-grid > *[span="10"] { --grid-ce: 10 }
-x-grid > *[span$="+11"], x-grid > *[span$="-10"], x-grid > *[span="11"] { --grid-ce: 11 }
-x-grid > *[span$="+12"], x-grid > *[span$="-11"], x-grid > *[span="12"] { --grid-ce: 12 }
-x-grid > *[span$="-12"] { --grid-ce: 13 }
+:where(x-grid,[x-grid]) > *[span$="+1"], :where(x-grid,[x-grid]) > *[span="1"] { --grid-ce: 1 }
+:where(x-grid,[x-grid]) > *[span$="+2"], :where(x-grid,[x-grid]) > *[span$="-1"], :where(x-grid,[x-grid]) > *[span="2"] { --grid-ce: 2 }
+:where(x-grid,[x-grid]) > *[span$="+3"], :where(x-grid,[x-grid]) > *[span$="-2"], :where(x-grid,[x-grid]) > *[span="3"] { --grid-ce: 3 }
+:where(x-grid,[x-grid]) > *[span$="+4"], :where(x-grid,[x-grid]) > *[span$="-3"], :where(x-grid,[x-grid]) > *[span="4"] { --grid-ce: 4 }
+:where(x-grid,[x-grid]) > *[span$="+5"], :where(x-grid,[x-grid]) > *[span$="-4"], :where(x-grid,[x-grid]) > *[span="5"] { --grid-ce: 5 }
+:where(x-grid,[x-grid]) > *[span$="+6"], :where(x-grid,[x-grid]) > *[span$="-5"], :where(x-grid,[x-grid]) > *[span="6"] { --grid-ce: 6 }
+:where(x-grid,[x-grid]) > *[span$="+7"], :where(x-grid,[x-grid]) > *[span$="-6"], :where(x-grid,[x-grid]) > *[span="7"] { --grid-ce: 7 }
+:where(x-grid,[x-grid]) > *[span$="+8"], :where(x-grid,[x-grid]) > *[span$="-7"], :where(x-grid,[x-grid]) > *[span="8"] { --grid-ce: 8 }
+:where(x-grid,[x-grid]) > *[span$="+9"], :where(x-grid,[x-grid]) > *[span$="-8"], :where(x-grid,[x-grid]) > *[span="9"] { --grid-ce: 9 }
+:where(x-grid,[x-grid]) > *[span$="+10"], :where(x-grid,[x-grid]) > *[span$="-9"], :where(x-grid,[x-grid]) > *[span="10"] { --grid-ce: 10 }
+:where(x-grid,[x-grid]) > *[span$="+11"], :where(x-grid,[x-grid]) > *[span$="-10"], :where(x-grid,[x-grid]) > *[span="11"] { --grid-ce: 11 }
+:where(x-grid,[x-grid]) > *[span$="+12"], :where(x-grid,[x-grid]) > *[span$="-11"], :where(x-grid,[x-grid]) > *[span="12"] { --grid-ce: 12 }
+:where(x-grid,[x-grid]) > *[span$="-12"] { --grid-ce: 13 }
 
 /* connect vars */
-x-grid > *[span] { grid-column-end: span var(--grid-ce) }
-x-grid > *[span*="+"], x-grid > *[span*="-"], x-grid > *[span*=".."] { grid-column-start: var(--grid-cs) }
-x-grid > *[span*="-"], x-grid > *[span*=".."] { grid-column-end: var(--grid-ce) }
-x-grid > *[span="row"] { grid-column: 1 / -1 }
+:where(x-grid,[x-grid]) > *[span] { grid-column-end: span var(--grid-ce) }
+:where(x-grid,[x-grid]) > *[span*="+"], :where(x-grid,[x-grid]) > *[span*="-"], :where(x-grid,[x-grid]) > *[span*=".."] { grid-column-start: var(--grid-cs) }
+:where(x-grid,[x-grid]) > *[span*="-"], :where(x-grid,[x-grid]) > *[span*=".."] { grid-column-end: var(--grid-ce) }
+:where(x-grid,[x-grid]) > *[span="row"] { grid-column: 1 / -1 }
 
 /*** Grid Row - Y axis */
-x-grid > *[span-y^="1"] { --grid-rs: 1 }
-x-grid > *[span-y^="2"] { --grid-rs: 2 }
-x-grid > *[span-y^="3"] { --grid-rs: 3 }
-x-grid > *[span-y^="4"] { --grid-rs: 4 }
-x-grid > *[span-y^="5"] { --grid-rs: 5 }
-x-grid > *[span-y^="6"] { --grid-rs: 6 }
-x-grid > *[span-y^="7"] { --grid-rs: 7 }
-x-grid > *[span-y^="8"] { --grid-rs: 8 }
-x-grid > *[span-y^="9"] { --grid-rs: 9 }
-x-grid > *[span-y^="10"] { --grid-rs: 10 }
-x-grid > *[span-y^="11"] { --grid-rs: 11 }
-x-grid > *[span-y^="12"] { --grid-rs: 12 }
+:where(x-grid,[x-grid]) > *[span-y^="1"] { --grid-rs: 1 }
+:where(x-grid,[x-grid]) > *[span-y^="2"] { --grid-rs: 2 }
+:where(x-grid,[x-grid]) > *[span-y^="3"] { --grid-rs: 3 }
+:where(x-grid,[x-grid]) > *[span-y^="4"] { --grid-rs: 4 }
+:where(x-grid,[x-grid]) > *[span-y^="5"] { --grid-rs: 5 }
+:where(x-grid,[x-grid]) > *[span-y^="6"] { --grid-rs: 6 }
+:where(x-grid,[x-grid]) > *[span-y^="7"] { --grid-rs: 7 }
+:where(x-grid,[x-grid]) > *[span-y^="8"] { --grid-rs: 8 }
+:where(x-grid,[x-grid]) > *[span-y^="9"] { --grid-rs: 9 }
+:where(x-grid,[x-grid]) > *[span-y^="10"] { --grid-rs: 10 }
+:where(x-grid,[x-grid]) > *[span-y^="11"] { --grid-rs: 11 }
+:where(x-grid,[x-grid]) > *[span-y^="12"] { --grid-rs: 12 }
 
-x-grid > *[span-y$="+1"], x-grid > *[span-y="1"] { --grid-re: 1 }
-x-grid > *[span-y$="+2"], x-grid > *[span-y$="-1"], x-grid > *[span-y="2"] { --grid-re: 2 }
-x-grid > *[span-y$="+3"], x-grid > *[span-y$="-2"], x-grid > *[span-y="3"] { --grid-re: 3 }
-x-grid > *[span-y$="+4"], x-grid > *[span-y$="-3"], x-grid > *[span-y="4"] { --grid-re: 4 }
-x-grid > *[span-y$="+5"], x-grid > *[span-y$="-4"], x-grid > *[span-y="5"] { --grid-re: 5 }
-x-grid > *[span-y$="+6"], x-grid > *[span-y$="-5"], x-grid > *[span-y="6"] { --grid-re: 6 }
-x-grid > *[span-y$="+7"], x-grid > *[span-y$="-6"], x-grid > *[span-y="7"] { --grid-re: 7 }
-x-grid > *[span-y$="+8"], x-grid > *[span-y$="-7"], x-grid > *[span-y="8"] { --grid-re: 8 }
-x-grid > *[span-y$="+9"], x-grid > *[span-y$="-8"], x-grid > *[span-y="9"] { --grid-re: 9 }
-x-grid > *[span-y$="+10"], x-grid > *[span-y$="-9"], x-grid > *[span-y="10"] { --grid-re: 10 }
-x-grid > *[span-y$="+11"], x-grid > *[span-y$="-10"], x-grid > *[span-y="11"] { --grid-re: 11 }
-x-grid > *[span-y$="+12"], x-grid > *[span-y$="-11"], x-grid > *[span-y="12"] { --grid-re: 12 }
-x-grid > *[span-y$="-12"] { --grid-re: 13 }
+:where(x-grid,[x-grid]) > *[span-y$="+1"], :where(x-grid,[x-grid]) > *[span-y="1"] { --grid-re: 1 }
+:where(x-grid,[x-grid]) > *[span-y$="+2"], :where(x-grid,[x-grid]) > *[span-y$="-1"], :where(x-grid,[x-grid]) > *[span-y="2"] { --grid-re: 2 }
+:where(x-grid,[x-grid]) > *[span-y$="+3"], :where(x-grid,[x-grid]) > *[span-y$="-2"], :where(x-grid,[x-grid]) > *[span-y="3"] { --grid-re: 3 }
+:where(x-grid,[x-grid]) > *[span-y$="+4"], :where(x-grid,[x-grid]) > *[span-y$="-3"], :where(x-grid,[x-grid]) > *[span-y="4"] { --grid-re: 4 }
+:where(x-grid,[x-grid]) > *[span-y$="+5"], :where(x-grid,[x-grid]) > *[span-y$="-4"], :where(x-grid,[x-grid]) > *[span-y="5"] { --grid-re: 5 }
+:where(x-grid,[x-grid]) > *[span-y$="+6"], :where(x-grid,[x-grid]) > *[span-y$="-5"], :where(x-grid,[x-grid]) > *[span-y="6"] { --grid-re: 6 }
+:where(x-grid,[x-grid]) > *[span-y$="+7"], :where(x-grid,[x-grid]) > *[span-y$="-6"], :where(x-grid,[x-grid]) > *[span-y="7"] { --grid-re: 7 }
+:where(x-grid,[x-grid]) > *[span-y$="+8"], :where(x-grid,[x-grid]) > *[span-y$="-7"], :where(x-grid,[x-grid]) > *[span-y="8"] { --grid-re: 8 }
+:where(x-grid,[x-grid]) > *[span-y$="+9"], :where(x-grid,[x-grid]) > *[span-y$="-8"], :where(x-grid,[x-grid]) > *[span-y="9"] { --grid-re: 9 }
+:where(x-grid,[x-grid]) > *[span-y$="+10"], :where(x-grid,[x-grid]) > *[span-y$="-9"], :where(x-grid,[x-grid]) > *[span-y="10"] { --grid-re: 10 }
+:where(x-grid,[x-grid]) > *[span-y$="+11"], :where(x-grid,[x-grid]) > *[span-y$="-10"], :where(x-grid,[x-grid]) > *[span-y="11"] { --grid-re: 11 }
+:where(x-grid,[x-grid]) > *[span-y$="+12"], :where(x-grid,[x-grid]) > *[span-y$="-11"], :where(x-grid,[x-grid]) > *[span-y="12"] { --grid-re: 12 }
+:where(x-grid,[x-grid]) > *[span-y$="-12"] { --grid-re: 13 }
 
 /* connect vars */
-x-grid > *[span-y] { grid-row-end: span var(--grid-re) }
-x-grid > *[span-y*="+"], x-grid > *[span-y*="-"] { grid-row-start: var(--grid-rs) }
-x-grid > *[span-y*="-"] { grid-row-end: var(--grid-re) }
+:where(x-grid,[x-grid]) > *[span-y] { grid-row-end: span var(--grid-re) }
+:where(x-grid,[x-grid]) > *[span-y*="+"], :where(x-grid,[x-grid]) > *[span-y*="-"] { grid-row-start: var(--grid-rs) }
+:where(x-grid,[x-grid]) > *[span-y*="-"] { grid-row-end: var(--grid-re) }
+:where(x-grid,[x-grid]) > *[span-y="1f"]  { grid-row: 1 / -1 }
 
-/* [S] for window width <= 600 */
-@media (max-width: 600px) {
-  x-grid[columns-s="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-s="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
-  x-grid[columns-s="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
-  x-grid[columns-s="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
-  x-grid[columns-s="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
-  x-grid[columns-s="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
-  x-grid[columns-s="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
-  x-grid[columns-s="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
-  x-grid[columns-s="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
-  x-grid[columns-s="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
-  x-grid[columns-s="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
-  x-grid[columns-s="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
+/* [S] for window width <= 777px */
+@media (max-width: 777px) {
+  [columns-s="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+  [columns-s="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
+  [columns-s="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
+  [columns-s="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
+  [columns-s="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
+  [columns-s="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
+  [columns-s="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
+  [columns-s="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
+  [columns-s="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
+  [columns-s="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
+  [columns-s="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
+  [columns-s="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
 
-  x-grid[columns-s="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
-  x-grid[columns-s="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
-  x-grid[columns-s="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-s="1f"] > * { grid-column: 1 / -1 }
+  [columns-s="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
+  [columns-s="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
+  [columns-s="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+  [columns-s="1f"] > * { grid-column: 1 / -1 }
+  [columns-s="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+  [columns-s="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+  [columns-s="stack"] > *:first-child { z-index: 1 }
 
   /*** Grid Column - X axis */
-  x-grid > *[span-s^="1"] { --grid-cs: 1 }
-  x-grid > *[span-s^="2"] { --grid-cs: 2 }
-  x-grid > *[span-s^="3"] { --grid-cs: 3 }
-  x-grid > *[span-s^="4"] { --grid-cs: 4 }
-  x-grid > *[span-s^="5"] { --grid-cs: 5 }
-  x-grid > *[span-s^="6"] { --grid-cs: 6 }
-  x-grid > *[span-s^="7"] { --grid-cs: 7 }
-  x-grid > *[span-s^="8"] { --grid-cs: 8 }
-  x-grid > *[span-s^="9"] { --grid-cs: 9 }
-  x-grid > *[span-s^="10"] { --grid-cs: 10 }
-  x-grid > *[span-s^="11"] { --grid-cs: 11 }
-  x-grid > *[span-s^="12"] { --grid-cs: 12 }
+  :where(x-grid,[x-grid]) > *[span-s^="1"] { --grid-cs: 1 }
+  :where(x-grid,[x-grid]) > *[span-s^="2"] { --grid-cs: 2 }
+  :where(x-grid,[x-grid]) > *[span-s^="3"] { --grid-cs: 3 }
+  :where(x-grid,[x-grid]) > *[span-s^="4"] { --grid-cs: 4 }
+  :where(x-grid,[x-grid]) > *[span-s^="5"] { --grid-cs: 5 }
+  :where(x-grid,[x-grid]) > *[span-s^="6"] { --grid-cs: 6 }
+  :where(x-grid,[x-grid]) > *[span-s^="7"] { --grid-cs: 7 }
+  :where(x-grid,[x-grid]) > *[span-s^="8"] { --grid-cs: 8 }
+  :where(x-grid,[x-grid]) > *[span-s^="9"] { --grid-cs: 9 }
+  :where(x-grid,[x-grid]) > *[span-s^="10"] { --grid-cs: 10 }
+  :where(x-grid,[x-grid]) > *[span-s^="11"] { --grid-cs: 11 }
+  :where(x-grid,[x-grid]) > *[span-s^="12"] { --grid-cs: 12 }
 
-  x-grid > *[span-s$="+1"], x-grid > *[span-s="1"] { --grid-ce: 1 }
-  x-grid > *[span-s$="+2"], x-grid > *[span-s$="-1"], x-grid > *[span-s="2"] { --grid-ce: 2 }
-  x-grid > *[span-s$="+3"], x-grid > *[span-s$="-2"], x-grid > *[span-s="3"] { --grid-ce: 3 }
-  x-grid > *[span-s$="+4"], x-grid > *[span-s$="-3"], x-grid > *[span-s="4"] { --grid-ce: 4 }
-  x-grid > *[span-s$="+5"], x-grid > *[span-s$="-4"], x-grid > *[span-s="5"] { --grid-ce: 5 }
-  x-grid > *[span-s$="+6"], x-grid > *[span-s$="-5"], x-grid > *[span-s="6"] { --grid-ce: 6 }
-  x-grid > *[span-s$="+7"], x-grid > *[span-s$="-6"], x-grid > *[span-s="7"] { --grid-ce: 7 }
-  x-grid > *[span-s$="+8"], x-grid > *[span-s$="-7"], x-grid > *[span-s="8"] { --grid-ce: 8 }
-  x-grid > *[span-s$="+9"], x-grid > *[span-s$="-8"], x-grid > *[span-s="9"] { --grid-ce: 9 }
-  x-grid > *[span-s$="+10"], x-grid > *[span-s$="-9"], x-grid > *[span-s="10"] { --grid-ce: 10 }
-  x-grid > *[span-s$="+11"], x-grid > *[span-s$="-10"], x-grid > *[span-s="11"] { --grid-ce: 11 }
-  x-grid > *[span-s$="+12"], x-grid > *[span-s$="-11"], x-grid > *[span-s="12"] { --grid-ce: 12 }
-  x-grid > *[span-s$="-12"] { --grid-ce: 13 }
+  :where(x-grid,[x-grid]) > *[span-s$="+1"], :where(x-grid,[x-grid]) > *[span-s="1"] { --grid-ce: 1 }
+  :where(x-grid,[x-grid]) > *[span-s$="+2"], :where(x-grid,[x-grid]) > *[span-s$="-1"], :where(x-grid,[x-grid]) > *[span-s="2"] { --grid-ce: 2 }
+  :where(x-grid,[x-grid]) > *[span-s$="+3"], :where(x-grid,[x-grid]) > *[span-s$="-2"], :where(x-grid,[x-grid]) > *[span-s="3"] { --grid-ce: 3 }
+  :where(x-grid,[x-grid]) > *[span-s$="+4"], :where(x-grid,[x-grid]) > *[span-s$="-3"], :where(x-grid,[x-grid]) > *[span-s="4"] { --grid-ce: 4 }
+  :where(x-grid,[x-grid]) > *[span-s$="+5"], :where(x-grid,[x-grid]) > *[span-s$="-4"], :where(x-grid,[x-grid]) > *[span-s="5"] { --grid-ce: 5 }
+  :where(x-grid,[x-grid]) > *[span-s$="+6"], :where(x-grid,[x-grid]) > *[span-s$="-5"], :where(x-grid,[x-grid]) > *[span-s="6"] { --grid-ce: 6 }
+  :where(x-grid,[x-grid]) > *[span-s$="+7"], :where(x-grid,[x-grid]) > *[span-s$="-6"], :where(x-grid,[x-grid]) > *[span-s="7"] { --grid-ce: 7 }
+  :where(x-grid,[x-grid]) > *[span-s$="+8"], :where(x-grid,[x-grid]) > *[span-s$="-7"], :where(x-grid,[x-grid]) > *[span-s="8"] { --grid-ce: 8 }
+  :where(x-grid,[x-grid]) > *[span-s$="+9"], :where(x-grid,[x-grid]) > *[span-s$="-8"], :where(x-grid,[x-grid]) > *[span-s="9"] { --grid-ce: 9 }
+  :where(x-grid,[x-grid]) > *[span-s$="+10"], :where(x-grid,[x-grid]) > *[span-s$="-9"], :where(x-grid,[x-grid]) > *[span-s="10"] { --grid-ce: 10 }
+  :where(x-grid,[x-grid]) > *[span-s$="+11"], :where(x-grid,[x-grid]) > *[span-s$="-10"], :where(x-grid,[x-grid]) > *[span-s="11"] { --grid-ce: 11 }
+  :where(x-grid,[x-grid]) > *[span-s$="+12"], :where(x-grid,[x-grid]) > *[span-s$="-11"], :where(x-grid,[x-grid]) > *[span-s="12"] { --grid-ce: 12 }
+  :where(x-grid,[x-grid]) > *[span-s$="-12"] { --grid-ce: 13 }
 
   /* connect vars */
-  x-grid > *[span-s] { grid-column-end: span var(--grid-ce) }
-  x-grid > *[span-s*="+"], x-grid > *[span-s*="-"], x-grid > *[span-s*=".."] { grid-column-start: var(--grid-cs) }
-  x-grid > *[span-s*="-"], x-grid > *[span-s*=".."] { grid-column-end: var(--grid-ce) }
-  x-grid > *[span-s="row"] { grid-column: 1 / -1 }
+  :where(x-grid,[x-grid]) > *[span-s] { grid-column-end: span var(--grid-ce) }
+  :where(x-grid,[x-grid]) > *[span-s*="+"], :where(x-grid,[x-grid]) > *[span-s*="-"], :where(x-grid,[x-grid]) > *[span-s*=".."] { grid-column-start: var(--grid-cs) }
+  :where(x-grid,[x-grid]) > *[span-s*="-"], :where(x-grid,[x-grid]) > *[span-s*=".."] { grid-column-end: var(--grid-ce) }
+  :where(x-grid,[x-grid]) > *[span-s="row"] { grid-column: 1 / -1 }
 
   /*** Grid Row - Y axis */
-  x-grid > *[span-y-s^="1"] { --grid-rs: 1 }
-  x-grid > *[span-y-s^="2"] { --grid-rs: 2 }
-  x-grid > *[span-y-s^="3"] { --grid-rs: 3 }
-  x-grid > *[span-y-s^="4"] { --grid-rs: 4 }
-  x-grid > *[span-y-s^="5"] { --grid-rs: 5 }
-  x-grid > *[span-y-s^="6"] { --grid-rs: 6 }
-  x-grid > *[span-y-s^="7"] { --grid-rs: 7 }
-  x-grid > *[span-y-s^="8"] { --grid-rs: 8 }
-  x-grid > *[span-y-s^="9"] { --grid-rs: 9 }
-  x-grid > *[span-y-s^="10"] { --grid-rs: 10 }
-  x-grid > *[span-y-s^="11"] { --grid-rs: 11 }
-  x-grid > *[span-y-s^="12"] { --grid-rs: 12 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="1"] { --grid-rs: 1 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="2"] { --grid-rs: 2 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="3"] { --grid-rs: 3 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="4"] { --grid-rs: 4 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="5"] { --grid-rs: 5 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="6"] { --grid-rs: 6 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="7"] { --grid-rs: 7 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="8"] { --grid-rs: 8 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="9"] { --grid-rs: 9 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="10"] { --grid-rs: 10 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="11"] { --grid-rs: 11 }
+  :where(x-grid,[x-grid]) > *[span-y-s^="12"] { --grid-rs: 12 }
 
-  x-grid > *[span-y-s$="+1"], x-grid > *[span-y-s="1"] { --grid-re: 1 }
-  x-grid > *[span-y-s$="+2"], x-grid > *[span-y-s$="-1"], x-grid > *[span-y-s="2"] { --grid-re: 2 }
-  x-grid > *[span-y-s$="+3"], x-grid > *[span-y-s$="-2"], x-grid > *[span-y-s="3"] { --grid-re: 3 }
-  x-grid > *[span-y-s$="+4"], x-grid > *[span-y-s$="-3"], x-grid > *[span-y-s="4"] { --grid-re: 4 }
-  x-grid > *[span-y-s$="+5"], x-grid > *[span-y-s$="-4"], x-grid > *[span-y-s="5"] { --grid-re: 5 }
-  x-grid > *[span-y-s$="+6"], x-grid > *[span-y-s$="-5"], x-grid > *[span-y-s="6"] { --grid-re: 6 }
-  x-grid > *[span-y-s$="+7"], x-grid > *[span-y-s$="-6"], x-grid > *[span-y-s="7"] { --grid-re: 7 }
-  x-grid > *[span-y-s$="+8"], x-grid > *[span-y-s$="-7"], x-grid > *[span-y-s="8"] { --grid-re: 8 }
-  x-grid > *[span-y-s$="+9"], x-grid > *[span-y-s$="-8"], x-grid > *[span-y-s="9"] { --grid-re: 9 }
-  x-grid > *[span-y-s$="+10"], x-grid > *[span-y-s$="-9"], x-grid > *[span-y-s="10"] { --grid-re: 10 }
-  x-grid > *[span-y-s$="+11"], x-grid > *[span-y-s$="-10"], x-grid > *[span-y-s="11"] { --grid-re: 11 }
-  x-grid > *[span-y-s$="+12"], x-grid > *[span-y-s$="-11"], x-grid > *[span-y-s="12"] { --grid-re: 12 }
-  x-grid > *[span-y-s$="-12"] { --grid-re: 13 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+1"], :where(x-grid,[x-grid]) > *[span-y-s="1"] { --grid-re: 1 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+2"], :where(x-grid,[x-grid]) > *[span-y-s$="-1"], :where(x-grid,[x-grid]) > *[span-y-s="2"] { --grid-re: 2 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+3"], :where(x-grid,[x-grid]) > *[span-y-s$="-2"], :where(x-grid,[x-grid]) > *[span-y-s="3"] { --grid-re: 3 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+4"], :where(x-grid,[x-grid]) > *[span-y-s$="-3"], :where(x-grid,[x-grid]) > *[span-y-s="4"] { --grid-re: 4 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+5"], :where(x-grid,[x-grid]) > *[span-y-s$="-4"], :where(x-grid,[x-grid]) > *[span-y-s="5"] { --grid-re: 5 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+6"], :where(x-grid,[x-grid]) > *[span-y-s$="-5"], :where(x-grid,[x-grid]) > *[span-y-s="6"] { --grid-re: 6 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+7"], :where(x-grid,[x-grid]) > *[span-y-s$="-6"], :where(x-grid,[x-grid]) > *[span-y-s="7"] { --grid-re: 7 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+8"], :where(x-grid,[x-grid]) > *[span-y-s$="-7"], :where(x-grid,[x-grid]) > *[span-y-s="8"] { --grid-re: 8 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+9"], :where(x-grid,[x-grid]) > *[span-y-s$="-8"], :where(x-grid,[x-grid]) > *[span-y-s="9"] { --grid-re: 9 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+10"], :where(x-grid,[x-grid]) > *[span-y-s$="-9"], :where(x-grid,[x-grid]) > *[span-y-s="10"] { --grid-re: 10 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+11"], :where(x-grid,[x-grid]) > *[span-y-s$="-10"], :where(x-grid,[x-grid]) > *[span-y-s="11"] { --grid-re: 11 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="+12"], :where(x-grid,[x-grid]) > *[span-y-s$="-11"], :where(x-grid,[x-grid]) > *[span-y-s="12"] { --grid-re: 12 }
+  :where(x-grid,[x-grid]) > *[span-y-s$="-12"] { --grid-re: 13 }
 
   /* connect vars */
-  x-grid > *[span-y-s] { grid-row-end: span var(--grid-re) }
-  x-grid > *[span-y-s*="+"], x-grid > *[span-y-s*="-"] { grid-row-start: var(--grid-rs) }
-  x-grid > *[span-y-s*="-"] { grid-row-end: var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-s] { grid-row-end: span var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-s*="+"], :where(x-grid,[x-grid]) > *[span-y-s*="-"] { grid-row-start: var(--grid-rs) }
+  :where(x-grid,[x-grid]) > *[span-y-s*="-"] { grid-row-end: var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-s="1f"]  { grid-row: 1 / -1 }
 }
 
-/* [M] for window width 601px <> 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
-  x-grid[columns-m="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-m="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
-  x-grid[columns-m="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
-  x-grid[columns-m="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
-  x-grid[columns-m="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
-  x-grid[columns-m="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
-  x-grid[columns-m="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
-  x-grid[columns-m="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
-  x-grid[columns-m="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
-  x-grid[columns-m="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
-  x-grid[columns-m="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
-  x-grid[columns-m="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
+/* [M] for window width 778px <> 1024px */
+@media (min-width: 778px) and (max-width: 1024px) {
+  [columns-m="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+  [columns-m="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
+  [columns-m="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
+  [columns-m="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
+  [columns-m="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
+  [columns-m="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
+  [columns-m="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
+  [columns-m="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
+  [columns-m="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
+  [columns-m="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
+  [columns-m="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
+  [columns-m="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
 
-  x-grid[columns-m="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
-  x-grid[columns-m="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
-  x-grid[columns-m="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-m="1f"] > * { grid-column: 1 / -1 }
-
-  /*** Grid Column - X axis */
-  x-grid > *[span-m^="1"] { --grid-cs: 1 }
-  x-grid > *[span-m^="2"] { --grid-cs: 2 }
-  x-grid > *[span-m^="3"] { --grid-cs: 3 }
-  x-grid > *[span-m^="4"] { --grid-cs: 4 }
-  x-grid > *[span-m^="5"] { --grid-cs: 5 }
-  x-grid > *[span-m^="6"] { --grid-cs: 6 }
-  x-grid > *[span-m^="7"] { --grid-cs: 7 }
-  x-grid > *[span-m^="8"] { --grid-cs: 8 }
-  x-grid > *[span-m^="9"] { --grid-cs: 9 }
-  x-grid > *[span-m^="10"] { --grid-cs: 10 }
-  x-grid > *[span-m^="11"] { --grid-cs: 11 }
-  x-grid > *[span-m^="12"] { --grid-cs: 12 }
-
-  x-grid > *[span-m$="+1"], x-grid > *[span-m="1"] { --grid-ce: 1 }
-  x-grid > *[span-m$="+2"], x-grid > *[span-m$="-1"], x-grid > *[span-m="2"] { --grid-ce: 2 }
-  x-grid > *[span-m$="+3"], x-grid > *[span-m$="-2"], x-grid > *[span-m="3"] { --grid-ce: 3 }
-  x-grid > *[span-m$="+4"], x-grid > *[span-m$="-3"], x-grid > *[span-m="4"] { --grid-ce: 4 }
-  x-grid > *[span-m$="+5"], x-grid > *[span-m$="-4"], x-grid > *[span-m="5"] { --grid-ce: 5 }
-  x-grid > *[span-m$="+6"], x-grid > *[span-m$="-5"], x-grid > *[span-m="6"] { --grid-ce: 6 }
-  x-grid > *[span-m$="+7"], x-grid > *[span-m$="-6"], x-grid > *[span-m="7"] { --grid-ce: 7 }
-  x-grid > *[span-m$="+8"], x-grid > *[span-m$="-7"], x-grid > *[span-m="8"] { --grid-ce: 8 }
-  x-grid > *[span-m$="+9"], x-grid > *[span-m$="-8"], x-grid > *[span-m="9"] { --grid-ce: 9 }
-  x-grid > *[span-m$="+10"], x-grid > *[span-m$="-9"], x-grid > *[span-m="10"] { --grid-ce: 10 }
-  x-grid > *[span-m$="+11"], x-grid > *[span-m$="-10"], x-grid > *[span-m="11"] { --grid-ce: 11 }
-  x-grid > *[span-m$="+12"], x-grid > *[span-m$="-11"], x-grid > *[span-m="12"] { --grid-ce: 12 }
-  x-grid > *[span-m$="-12"] { --grid-ce: 13 }
-
-  /* connect vars */
-  x-grid > *[span-m] { grid-column-end: span var(--grid-ce) }
-  x-grid > *[span-m*="+"], x-grid > *[span-m*="-"], x-grid > *[span-m*=".."] { grid-column-start: var(--grid-cs) }
-  x-grid > *[span-m*="-"], x-grid > *[span-m*=".."] { grid-column-end: var(--grid-ce) }
-  x-grid > *[span-m="row"] { grid-column: 1 / -1 }
-
-  /*** Grid Row - Y axis */
-  x-grid > *[span-y-m^="1"] { --grid-rs: 1 }
-  x-grid > *[span-y-m^="2"] { --grid-rs: 2 }
-  x-grid > *[span-y-m^="3"] { --grid-rs: 3 }
-  x-grid > *[span-y-m^="4"] { --grid-rs: 4 }
-  x-grid > *[span-y-m^="5"] { --grid-rs: 5 }
-  x-grid > *[span-y-m^="6"] { --grid-rs: 6 }
-  x-grid > *[span-y-m^="7"] { --grid-rs: 7 }
-  x-grid > *[span-y-m^="8"] { --grid-rs: 8 }
-  x-grid > *[span-y-m^="9"] { --grid-rs: 9 }
-  x-grid > *[span-y-m^="10"] { --grid-rs: 10 }
-  x-grid > *[span-y-m^="11"] { --grid-rs: 11 }
-  x-grid > *[span-y-m^="12"] { --grid-rs: 12 }
-
-  x-grid > *[span-y-m$="+1"], x-grid > *[span-y-m="1"] { --grid-re: 1 }
-  x-grid > *[span-y-m$="+2"], x-grid > *[span-y-m$="-1"], x-grid > *[span-y-m="2"] { --grid-re: 2 }
-  x-grid > *[span-y-m$="+3"], x-grid > *[span-y-m$="-2"], x-grid > *[span-y-m="3"] { --grid-re: 3 }
-  x-grid > *[span-y-m$="+4"], x-grid > *[span-y-m$="-3"], x-grid > *[span-y-m="4"] { --grid-re: 4 }
-  x-grid > *[span-y-m$="+5"], x-grid > *[span-y-m$="-4"], x-grid > *[span-y-m="5"] { --grid-re: 5 }
-  x-grid > *[span-y-m$="+6"], x-grid > *[span-y-m$="-5"], x-grid > *[span-y-m="6"] { --grid-re: 6 }
-  x-grid > *[span-y-m$="+7"], x-grid > *[span-y-m$="-6"], x-grid > *[span-y-m="7"] { --grid-re: 7 }
-  x-grid > *[span-y-m$="+8"], x-grid > *[span-y-m$="-7"], x-grid > *[span-y-m="8"] { --grid-re: 8 }
-  x-grid > *[span-y-m$="+9"], x-grid > *[span-y-m$="-8"], x-grid > *[span-y-m="9"] { --grid-re: 9 }
-  x-grid > *[span-y-m$="+10"], x-grid > *[span-y-m$="-9"], x-grid > *[span-y-m="10"] { --grid-re: 10 }
-  x-grid > *[span-y-m$="+11"], x-grid > *[span-y-m$="-10"], x-grid > *[span-y-m="11"] { --grid-re: 11 }
-  x-grid > *[span-y-m$="+12"], x-grid > *[span-y-m$="-11"], x-grid > *[span-y-m="12"] { --grid-re: 12 }
-  x-grid > *[span-y-m$="-12"] { --grid-re: 13 }
-
-  /* connect vars */
-  x-grid > *[span-y-m] { grid-row-end: span var(--grid-re) }
-  x-grid > *[span-y-m*="+"], x-grid > *[span-y-m*="-"] { grid-row-start: var(--grid-rs) }
-  x-grid > *[span-y-m*="-"] { grid-row-end: var(--grid-re) }
-}
-
-/* [L] for window width >= 1600 */
-@media (min-width: 1599px) {
-  x-grid[columns-l="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-l="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
-  x-grid[columns-l="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
-  x-grid[columns-l="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
-  x-grid[columns-l="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
-  x-grid[columns-l="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
-  x-grid[columns-l="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
-  x-grid[columns-l="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
-  x-grid[columns-l="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
-  x-grid[columns-l="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
-  x-grid[columns-l="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
-  x-grid[columns-l="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
-
-  x-grid[columns-l="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
-  x-grid[columns-l="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
-  x-grid[columns-l="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-  x-grid[columns-l="1f"] > * { grid-column: 1 / -1 }
+  [columns-m="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
+  [columns-m="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
+  [columns-m="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+  [columns-m="1f"] > * { grid-column: 1 / -1 }
+  [columns-m="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+  [columns-m="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+  [columns-m="stack"] > *:first-child { z-index: 1 }
 
   /*** Grid Column - X axis */
-  x-grid > *[span-l^="1"] { --grid-cs: 1 }
-  x-grid > *[span-l^="2"] { --grid-cs: 2 }
-  x-grid > *[span-l^="3"] { --grid-cs: 3 }
-  x-grid > *[span-l^="4"] { --grid-cs: 4 }
-  x-grid > *[span-l^="5"] { --grid-cs: 5 }
-  x-grid > *[span-l^="6"] { --grid-cs: 6 }
-  x-grid > *[span-l^="7"] { --grid-cs: 7 }
-  x-grid > *[span-l^="8"] { --grid-cs: 8 }
-  x-grid > *[span-l^="9"] { --grid-cs: 9 }
-  x-grid > *[span-l^="10"] { --grid-cs: 10 }
-  x-grid > *[span-l^="11"] { --grid-cs: 11 }
-  x-grid > *[span-l^="12"] { --grid-cs: 12 }
+  :where(x-grid,[x-grid]) > *[span-m^="1"] { --grid-cs: 1 }
+  :where(x-grid,[x-grid]) > *[span-m^="2"] { --grid-cs: 2 }
+  :where(x-grid,[x-grid]) > *[span-m^="3"] { --grid-cs: 3 }
+  :where(x-grid,[x-grid]) > *[span-m^="4"] { --grid-cs: 4 }
+  :where(x-grid,[x-grid]) > *[span-m^="5"] { --grid-cs: 5 }
+  :where(x-grid,[x-grid]) > *[span-m^="6"] { --grid-cs: 6 }
+  :where(x-grid,[x-grid]) > *[span-m^="7"] { --grid-cs: 7 }
+  :where(x-grid,[x-grid]) > *[span-m^="8"] { --grid-cs: 8 }
+  :where(x-grid,[x-grid]) > *[span-m^="9"] { --grid-cs: 9 }
+  :where(x-grid,[x-grid]) > *[span-m^="10"] { --grid-cs: 10 }
+  :where(x-grid,[x-grid]) > *[span-m^="11"] { --grid-cs: 11 }
+  :where(x-grid,[x-grid]) > *[span-m^="12"] { --grid-cs: 12 }
 
-  x-grid > *[span-l$="+1"], x-grid > *[span-l="1"] { --grid-ce: 1 }
-  x-grid > *[span-l$="+2"], x-grid > *[span-l$="-1"], x-grid > *[span-l="2"] { --grid-ce: 2 }
-  x-grid > *[span-l$="+3"], x-grid > *[span-l$="-2"], x-grid > *[span-l="3"] { --grid-ce: 3 }
-  x-grid > *[span-l$="+4"], x-grid > *[span-l$="-3"], x-grid > *[span-l="4"] { --grid-ce: 4 }
-  x-grid > *[span-l$="+5"], x-grid > *[span-l$="-4"], x-grid > *[span-l="5"] { --grid-ce: 5 }
-  x-grid > *[span-l$="+6"], x-grid > *[span-l$="-5"], x-grid > *[span-l="6"] { --grid-ce: 6 }
-  x-grid > *[span-l$="+7"], x-grid > *[span-l$="-6"], x-grid > *[span-l="7"] { --grid-ce: 7 }
-  x-grid > *[span-l$="+8"], x-grid > *[span-l$="-7"], x-grid > *[span-l="8"] { --grid-ce: 8 }
-  x-grid > *[span-l$="+9"], x-grid > *[span-l$="-8"], x-grid > *[span-l="9"] { --grid-ce: 9 }
-  x-grid > *[span-l$="+10"], x-grid > *[span-l$="-9"], x-grid > *[span-l="10"] { --grid-ce: 10 }
-  x-grid > *[span-l$="+11"], x-grid > *[span-l$="-10"], x-grid > *[span-l="11"] { --grid-ce: 11 }
-  x-grid > *[span-l$="+12"], x-grid > *[span-l$="-11"], x-grid > *[span-l="12"] { --grid-ce: 12 }
-  x-grid > *[span-l$="-12"] { --grid-ce: 13 }
+  :where(x-grid,[x-grid]) > *[span-m$="+1"], :where(x-grid,[x-grid]) > *[span-m="1"] { --grid-ce: 1 }
+  :where(x-grid,[x-grid]) > *[span-m$="+2"], :where(x-grid,[x-grid]) > *[span-m$="-1"], :where(x-grid,[x-grid]) > *[span-m="2"] { --grid-ce: 2 }
+  :where(x-grid,[x-grid]) > *[span-m$="+3"], :where(x-grid,[x-grid]) > *[span-m$="-2"], :where(x-grid,[x-grid]) > *[span-m="3"] { --grid-ce: 3 }
+  :where(x-grid,[x-grid]) > *[span-m$="+4"], :where(x-grid,[x-grid]) > *[span-m$="-3"], :where(x-grid,[x-grid]) > *[span-m="4"] { --grid-ce: 4 }
+  :where(x-grid,[x-grid]) > *[span-m$="+5"], :where(x-grid,[x-grid]) > *[span-m$="-4"], :where(x-grid,[x-grid]) > *[span-m="5"] { --grid-ce: 5 }
+  :where(x-grid,[x-grid]) > *[span-m$="+6"], :where(x-grid,[x-grid]) > *[span-m$="-5"], :where(x-grid,[x-grid]) > *[span-m="6"] { --grid-ce: 6 }
+  :where(x-grid,[x-grid]) > *[span-m$="+7"], :where(x-grid,[x-grid]) > *[span-m$="-6"], :where(x-grid,[x-grid]) > *[span-m="7"] { --grid-ce: 7 }
+  :where(x-grid,[x-grid]) > *[span-m$="+8"], :where(x-grid,[x-grid]) > *[span-m$="-7"], :where(x-grid,[x-grid]) > *[span-m="8"] { --grid-ce: 8 }
+  :where(x-grid,[x-grid]) > *[span-m$="+9"], :where(x-grid,[x-grid]) > *[span-m$="-8"], :where(x-grid,[x-grid]) > *[span-m="9"] { --grid-ce: 9 }
+  :where(x-grid,[x-grid]) > *[span-m$="+10"], :where(x-grid,[x-grid]) > *[span-m$="-9"], :where(x-grid,[x-grid]) > *[span-m="10"] { --grid-ce: 10 }
+  :where(x-grid,[x-grid]) > *[span-m$="+11"], :where(x-grid,[x-grid]) > *[span-m$="-10"], :where(x-grid,[x-grid]) > *[span-m="11"] { --grid-ce: 11 }
+  :where(x-grid,[x-grid]) > *[span-m$="+12"], :where(x-grid,[x-grid]) > *[span-m$="-11"], :where(x-grid,[x-grid]) > *[span-m="12"] { --grid-ce: 12 }
+  :where(x-grid,[x-grid]) > *[span-m$="-12"] { --grid-ce: 13 }
 
   /* connect vars */
-  x-grid > *[span-l] { grid-column-end: span var(--grid-ce) }
-  x-grid > *[span-l*="+"], x-grid > *[span-l*="-"], x-grid > *[span-l*=".."] { grid-column-start: var(--grid-cs) }
-  x-grid > *[span-l*="-"], x-grid > *[span-l*=".."] { grid-column-end: var(--grid-ce) }
-  x-grid > *[span-l="row"] { grid-column: 1 / -1 }
+  :where(x-grid,[x-grid]) > *[span-m] { grid-column-end: span var(--grid-ce) }
+  :where(x-grid,[x-grid]) > *[span-m*="+"], :where(x-grid,[x-grid]) > *[span-m*="-"], :where(x-grid,[x-grid]) > *[span-m*=".."] { grid-column-start: var(--grid-cs) }
+  :where(x-grid,[x-grid]) > *[span-m*="-"], :where(x-grid,[x-grid]) > *[span-m*=".."] { grid-column-end: var(--grid-ce) }
+  :where(x-grid,[x-grid]) > *[span-m="row"] { grid-column: 1 / -1 }
 
   /*** Grid Row - Y axis */
-  x-grid > *[span-y-l^="1"] { --grid-rs: 1 }
-  x-grid > *[span-y-l^="2"] { --grid-rs: 2 }
-  x-grid > *[span-y-l^="3"] { --grid-rs: 3 }
-  x-grid > *[span-y-l^="4"] { --grid-rs: 4 }
-  x-grid > *[span-y-l^="5"] { --grid-rs: 5 }
-  x-grid > *[span-y-l^="6"] { --grid-rs: 6 }
-  x-grid > *[span-y-l^="7"] { --grid-rs: 7 }
-  x-grid > *[span-y-l^="8"] { --grid-rs: 8 }
-  x-grid > *[span-y-l^="9"] { --grid-rs: 9 }
-  x-grid > *[span-y-l^="10"] { --grid-rs: 10 }
-  x-grid > *[span-y-l^="11"] { --grid-rs: 11 }
-  x-grid > *[span-y-l^="12"] { --grid-rs: 12 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="1"] { --grid-rs: 1 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="2"] { --grid-rs: 2 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="3"] { --grid-rs: 3 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="4"] { --grid-rs: 4 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="5"] { --grid-rs: 5 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="6"] { --grid-rs: 6 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="7"] { --grid-rs: 7 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="8"] { --grid-rs: 8 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="9"] { --grid-rs: 9 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="10"] { --grid-rs: 10 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="11"] { --grid-rs: 11 }
+  :where(x-grid,[x-grid]) > *[span-y-m^="12"] { --grid-rs: 12 }
 
-  x-grid > *[span-y-l$="+1"], x-grid > *[span-y-l="1"] { --grid-re: 1 }
-  x-grid > *[span-y-l$="+2"], x-grid > *[span-y-l$="-1"], x-grid > *[span-y-l="2"] { --grid-re: 2 }
-  x-grid > *[span-y-l$="+3"], x-grid > *[span-y-l$="-2"], x-grid > *[span-y-l="3"] { --grid-re: 3 }
-  x-grid > *[span-y-l$="+4"], x-grid > *[span-y-l$="-3"], x-grid > *[span-y-l="4"] { --grid-re: 4 }
-  x-grid > *[span-y-l$="+5"], x-grid > *[span-y-l$="-4"], x-grid > *[span-y-l="5"] { --grid-re: 5 }
-  x-grid > *[span-y-l$="+6"], x-grid > *[span-y-l$="-5"], x-grid > *[span-y-l="6"] { --grid-re: 6 }
-  x-grid > *[span-y-l$="+7"], x-grid > *[span-y-l$="-6"], x-grid > *[span-y-l="7"] { --grid-re: 7 }
-  x-grid > *[span-y-l$="+8"], x-grid > *[span-y-l$="-7"], x-grid > *[span-y-l="8"] { --grid-re: 8 }
-  x-grid > *[span-y-l$="+9"], x-grid > *[span-y-l$="-8"], x-grid > *[span-y-l="9"] { --grid-re: 9 }
-  x-grid > *[span-y-l$="+10"], x-grid > *[span-y-l$="-9"], x-grid > *[span-y-l="10"] { --grid-re: 10 }
-  x-grid > *[span-y-l$="+11"], x-grid > *[span-y-l$="-10"], x-grid > *[span-y-l="11"] { --grid-re: 11 }
-  x-grid > *[span-y-l$="+12"], x-grid > *[span-y-l$="-11"], x-grid > *[span-y-l="12"] { --grid-re: 12 }
-  x-grid > *[span-y-l$="-12"] { --grid-re: 13 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+1"], :where(x-grid,[x-grid]) > *[span-y-m="1"] { --grid-re: 1 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+2"], :where(x-grid,[x-grid]) > *[span-y-m$="-1"], :where(x-grid,[x-grid]) > *[span-y-m="2"] { --grid-re: 2 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+3"], :where(x-grid,[x-grid]) > *[span-y-m$="-2"], :where(x-grid,[x-grid]) > *[span-y-m="3"] { --grid-re: 3 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+4"], :where(x-grid,[x-grid]) > *[span-y-m$="-3"], :where(x-grid,[x-grid]) > *[span-y-m="4"] { --grid-re: 4 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+5"], :where(x-grid,[x-grid]) > *[span-y-m$="-4"], :where(x-grid,[x-grid]) > *[span-y-m="5"] { --grid-re: 5 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+6"], :where(x-grid,[x-grid]) > *[span-y-m$="-5"], :where(x-grid,[x-grid]) > *[span-y-m="6"] { --grid-re: 6 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+7"], :where(x-grid,[x-grid]) > *[span-y-m$="-6"], :where(x-grid,[x-grid]) > *[span-y-m="7"] { --grid-re: 7 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+8"], :where(x-grid,[x-grid]) > *[span-y-m$="-7"], :where(x-grid,[x-grid]) > *[span-y-m="8"] { --grid-re: 8 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+9"], :where(x-grid,[x-grid]) > *[span-y-m$="-8"], :where(x-grid,[x-grid]) > *[span-y-m="9"] { --grid-re: 9 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+10"], :where(x-grid,[x-grid]) > *[span-y-m$="-9"], :where(x-grid,[x-grid]) > *[span-y-m="10"] { --grid-re: 10 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+11"], :where(x-grid,[x-grid]) > *[span-y-m$="-10"], :where(x-grid,[x-grid]) > *[span-y-m="11"] { --grid-re: 11 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="+12"], :where(x-grid,[x-grid]) > *[span-y-m$="-11"], :where(x-grid,[x-grid]) > *[span-y-m="12"] { --grid-re: 12 }
+  :where(x-grid,[x-grid]) > *[span-y-m$="-12"] { --grid-re: 13 }
 
   /* connect vars */
-  x-grid > *[span-y-l] { grid-row-end: span var(--grid-re) }
-  x-grid > *[span-y-l*="+"], x-grid > *[span-y-l*="-"] { grid-row-start: var(--grid-rs) }
-  x-grid > *[span-y-l*="-"] { grid-row-end: var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-m] { grid-row-end: span var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-m*="+"], :where(x-grid,[x-grid]) > *[span-y-m*="-"] { grid-row-start: var(--grid-rs) }
+  :where(x-grid,[x-grid]) > *[span-y-m*="-"] { grid-row-end: var(--grid-re) }
+  :where(x-grid,[x-grid]) > *[span-y-m="1f"]  { grid-row: 1 / -1 }
 }
 
 /* ------------------
   flexbox
 ------------------ */
 /*  Flex Container */
-x-flex, [x-flex] { display: flex; gap: var(--rowGap, 1rem) var(--columnGap, 1rem) }
-x-flex > * { flex: 0 1 auto; width: auto; appearance: none }
-x-flex.even > * { width: 100% }
-x-flex img { object-fit: contain; max-width: 100% }
+:where(x-flex,[x-flex]) { display: flex; gap: var(--rowGap, 1rem) var(--columnGap, 1rem) }
+:where(x-flex,[x-flex]) > * { flex: 0 1 auto; width: auto; appearance: none }
+:where(x-flex,[x-flex]) .fullflex { flex: 1 1 auto }
+:where(x-flex,[x-flex]).even > * { width: 100% }
+:where(x-flex,[x-flex]) img { object-fit: contain; max-width: 100% }
+:where(x-flex,[x-flex]) x-cell:has(svg) { flex-shrink: 0 } /* preventing svg from being cropped */
 
 /*  Flex Direction */
 [direction="column"] { flex-direction: column }
@@ -1311,46 +1363,77 @@ x-flex img { object-fit: contain; max-width: 100% }
 [wrap="nowrap"] { flex-wrap: nowrap }
 [wrap="reverse"] { flex-wrap: wrap-reverse }
 
-/* for window width <= 600 */
-@media (max-width: 600px) {
-    /* FLEX DIRECTION */
+/* Flex span */
+:where(x-flex,[x-flex]) > *[span="1"]  { flex: 1 }
+:where(x-flex,[x-flex]) > *[span="2"]  { flex: 2 }
+:where(x-flex,[x-flex]) > *[span="3"]  { flex: 3 }
+:where(x-flex,[x-flex]) > *[span="4"]  { flex: 4 }
+:where(x-flex,[x-flex]) > *[span="5"]  { flex: 5 }
+:where(x-flex,[x-flex]) > *[span="6"]  { flex: 6 }
+:where(x-flex,[x-flex]) > *[span="7"]  { flex: 7 }
+:where(x-flex,[x-flex]) > *[span="8"]  { flex: 8 }
+:where(x-flex,[x-flex]) > *[span="9"]  { flex: 9 }
+:where(x-flex,[x-flex]) > *[span="10"] { flex: 10 }
+:where(x-flex,[x-flex]) > *[span="11"] { flex: 11 }
+:where(x-flex,[x-flex]) > *[span="12"] { flex: 12 }
+:where(x-flex,[x-flex]) > *[span="row"] { flex-basis: 100% }
+
+/* for window width <= 777px */
+@media (max-width: 777px) {
+    /*  Flex Direction */
     [direction-s="column"] { flex-direction: column }
     [direction-s="column-reverse"] { flex-direction: column-reverse }
     [direction-s="row"] { flex-direction: row }
     [direction-s="row-reverse"] { flex-direction: row-reverse }
 
-    /* WRAPPING */
-    [wrap],[wrap-s="wrap"] { flex-wrap: wrap }
+    /* Wrap */
+    [wrap-s],[wrap-s="wrap"] { flex-wrap: wrap }
     [wrap-s="nowrap"] { flex-wrap: nowrap }
     [wrap-s="reverse"] { flex-wrap: wrap-reverse }
+
+    /* Flex span */
+    :where(x-flex,[x-flex]) > *[span-s="1"]  { flex: 1 }
+    :where(x-flex,[x-flex]) > *[span-s="2"]  { flex: 2 }
+    :where(x-flex,[x-flex]) > *[span-s="3"]  { flex: 3 }
+    :where(x-flex,[x-flex]) > *[span-s="4"]  { flex: 4 }
+    :where(x-flex,[x-flex]) > *[span-s="5"]  { flex: 5 }
+    :where(x-flex,[x-flex]) > *[span-s="6"]  { flex: 6 }
+    :where(x-flex,[x-flex]) > *[span-s="7"]  { flex: 7 }
+    :where(x-flex,[x-flex]) > *[span-s="8"]  { flex: 8 }
+    :where(x-flex,[x-flex]) > *[span-s="9"]  { flex: 9 }
+    :where(x-flex,[x-flex]) > *[span-s="10"] { flex: 10 }
+    :where(x-flex,[x-flex]) > *[span-s="11"] { flex: 11 }
+    :where(x-flex,[x-flex]) > *[span-s="12"] { flex: 12 }
+    :where(x-flex,[x-flex]) > *[span-s="row"] { flex-basis: 100% }
 }
 
-/* for window width 601px <> 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
-    /* FLEX DIRECTION */
+/* for window width 778px <> 1024px */
+@media (min-width: 778px) and (max-width: 1024px) {
+    /*  Flex Direction */
     [direction-m="column"] { flex-direction: column }
     [direction-m="column-reverse"] { flex-direction: column-reverse }
     [direction-m="row"] { flex-direction: row }
     [direction-m="row-reverse"] { flex-direction: row-reverse }
 
-    /* WRAPPING */
-    [wrap],[wrap-m="wrap"] { flex-wrap: wrap }
+    /* Wrap */
+    [wrap-m],[wrap-m="wrap"] { flex-wrap: wrap }
     [wrap-m="nowrap"] { flex-wrap: nowrap }
     [wrap-m="reverse"] { flex-wrap: wrap-reverse }
-}
 
-/* for window width >= 1600 */
-@media (min-width: 1599px) {
-    /*  FLEX DIRECTION */
-    [direction-l="column"] { flex-direction: column }
-    [direction-l="column-reverse"] { flex-direction: column-reverse }
-    [direction-l="row"] { flex-direction: row }
-    [direction-l="row-reverse"] { flex-direction: row-reverse }
-
-    /* WRAPPING */
-    [wrap],[wrap-l="wrap"] { flex-wrap: wrap }
-    [wrap-l="nowrap"] { flex-wrap: nowrap }
-    [wrap-l="reverse"] { flex-wrap: wrap-reverse }
+    /* Flex span */
+    :where(x-flex,[x-flex]) > *[span-m="1"]  { flex: 1 }
+    :where(x-flex,[x-flex]) > *[span-m="2"]  { flex: 2 }
+    :where(x-flex,[x-flex]) > *[span-m="3"]  { flex: 3 }
+    :where(x-flex,[x-flex]) > *[span-m="4"]  { flex: 4 }
+    :where(x-flex,[x-flex]) > *[span-m="5"]  { flex: 5 }
+    :where(x-flex,[x-flex]) > *[span-m="6"]  { flex: 6 }
+    :where(x-flex,[x-flex]) > *[span-m="7"]  { flex: 7 }
+    :where(x-flex,[x-flex]) > *[span-m="8"]  { flex: 8 }
+    :where(x-flex,[x-flex]) > *[span-m="9"]  { flex: 9 }
+    :where(x-flex,[x-flex]) > *[span-m="10"] { flex: 10 }
+    :where(x-flex,[x-flex]) > *[span-m="11"] { flex: 11 }
+    :where(x-flex,[x-flex]) > *[span-m="12"] { flex: 12 }
+    :where(x-flex,[x-flex]) > *[span-m="row"] { flex-basis: 100% }
 }
 
 /* ------------------------
@@ -1502,18 +1585,25 @@ x-flex img { object-fit: contain; max-width: 100% }
 
 /* flex-* start & end for flexbox (needed for safari) */
 x-flex[jc="start"] { justify-content: flex-start }
+x-flex[jc="center"] { justify-content: center }
 x-flex[jc="end"] { justify-content: flex-end }
 x-flex[ji="start"] { justify-items: flex-start }
+x-flex[ji="center"] { justify-items: center }
 x-flex[ji="end"] { justify-items: flex-end }
 x-flex[ai="start"] { align-items: flex-start }
+x-flex[ai="center"] { align-items: center }
 x-flex[ai="end"] { align-items: flex-end }
 x-flex[ac="start"] { align-content: flex-start }
+x-flex[ac="center"] { align-content: center }
 x-flex[ac="end"] { align-content: flex-end }
 x-flex[as="start"] { align-self: flex-start }
+x-flex[as="center"] { align-self: center }
 x-flex[as="end"] { align-self: flex-end }
 x-flex[js="start"] { justify-self: flex-start }
+x-flex[js="center"] { justify-self: center }
 x-flex[js="end"] { justify-self: flex-end }
 x-flex[pi="start"] { place-items: flex-start }
+x-flex[pi="center"] { place-items: center }
 x-flex[pi="end"] { place-items: flex-end }
 x-flex[pi="start center"] { place-items: flex-start center }
 x-flex[pi="start end"] { place-items: flex-start flex-end }
@@ -1526,6 +1616,7 @@ x-flex[pi="end stretch"] { place-items: flex-end stretch }
 x-flex[pi="stretch start"] { place-items: stretch flex-start }
 x-flex[pi="stretch end"] { place-items: stretch flex-end }
 x-flex[pc="start"] { place-content: flex-start }
+x-flex[pc="center"] { place-content: center }
 x-flex[pc="end"] { place-content: flex-end }
 x-flex[pc="start center"] { place-content: flex-start center }
 x-flex[pc="start end"] { place-content: flex-start flex-end }
@@ -1550,6 +1641,7 @@ x-flex[pc="between end"] { place-content: space-between flex-end }
 x-flex[pc="evenly start"] { place-content: space-evenly flex-start }
 x-flex[pc="evenly end"] { place-content: space-evenly flex-end }
 x-flex[ps="start"] { place-self: flex-start }
+x-flex[ps="center"] { place-self: center }
 x-flex[ps="end"] { place-self: flex-end }
 x-flex[ps="start center"] { place-self: flex-start center }
 x-flex[ps="start end"] { place-self: flex-start flex-end }
@@ -1560,7 +1652,7 @@ x-flex[ps="end start"] { place-self: flex-end flex-start }
 x-flex[ps="end center"] { place-self: flex-end center }    
 x-flex[ps="end stretch"] { place-self:flex-end stretch }    
 x-flex[ps="stretch start"] { place-self: stretch flex-start }    
-x-flex[ps="stretch end"] { place-self: stretch flex-end }    
+x-flex[ps="stretch end"] { place-self: stretch flex-end }
 
 /* VISUAL ORDER */
 [order="first"] { order: -1 }
@@ -1582,8 +1674,8 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 [order="16"] { order: 16 }
 [order="last"] { order: 99 }
 
-/*** [S] for window width <= 600 */
-@media (max-width: 600px) {
+/*** [S] for window width <= 777px */
+@media (max-width: 777px) {
     /* Justify CONTENT */
     [jc-s="start"] { justify-content: start } 
     [jc-s="center"] { justify-content: center }
@@ -1730,18 +1822,25 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 
     /* flex-* start & end for flexbox (needed for safari) */
     x-flex[jc-s="start"] { justify-content: flex-start }
+    x-flex[jc-s="center"] { justify-content: center }
     x-flex[jc-s="end"] { justify-content: flex-end }
     x-flex[ji-s="start"] { justify-items: flex-start }
+    x-flex[ji-s="center"] { justify-items: center }
     x-flex[ji-s="end"] { justify-items: flex-end }
     x-flex[ai-s="start"] { align-items: flex-start }
+    x-flex[ai-s="center"] { align-items: center }
     x-flex[ai-s="end"] { align-items: flex-end }
     x-flex[ac-s="start"] { align-content: flex-start }
+    x-flex[ac-s="center"] { align-content: center }
     x-flex[ac-s="end"] { align-content: flex-end }
     x-flex[as-s="start"] { align-self: flex-start }
+    x-flex[as-s="center"] { align-self: center }
     x-flex[as-s="end"] { align-self: flex-end }
     x-flex[js-s="start"] { justify-self: flex-start }
+    x-flex[js-s="center"] { justify-self: center }
     x-flex[js-s="end"] { justify-self: flex-end }
     x-flex[pi-s="start"] { place-items: flex-start }
+    x-flex[pi-s="center"] { place-items: center }
     x-flex[pi-s="end"] { place-items: flex-end }
     x-flex[pi-s="start center"] { place-items: flex-start center }
     x-flex[pi-s="start end"] { place-items: flex-start flex-end }
@@ -1754,6 +1853,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     x-flex[pi-s="stretch start"] { place-items: stretch flex-start }
     x-flex[pi-s="stretch end"] { place-items: stretch flex-end }
     x-flex[pc-s="start"] { place-content: flex-start }
+    x-flex[pc-s="center"] { place-content: center }
     x-flex[pc-s="end"] { place-content: flex-end }
     x-flex[pc-s="start center"] { place-content: flex-start center }
     x-flex[pc-s="start end"] { place-content: flex-start flex-end }
@@ -1778,6 +1878,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     x-flex[pc-s="evenly start"] { place-content: space-evenly flex-start }
     x-flex[pc-s="evenly end"] { place-content: space-evenly flex-end }
     x-flex[ps-s="start"] { place-self: flex-start }
+    x-flex[ps-s="center"] { place-self: center }
     x-flex[ps-s="end"] { place-self: flex-end }
     x-flex[ps-s="start center"] { place-self: flex-start center }
     x-flex[ps-s="start end"] { place-self: flex-start flex-end }
@@ -1811,8 +1912,8 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     [order-s="last"] { order: 99 }
 }
 
-/*** [M] for window width 601px <> 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
+/*** [M] for window width 778px <> 1024px */
+@media (min-width: 778px) and (max-width: 1024px) {
     /* Justify CONTENT */
     [jc-m="start"] { justify-content: start } 
     [jc-m="center"] { justify-content: center }
@@ -1959,18 +2060,25 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 
     /* flex-* start & end for flexbox (needed for safari) */
     x-flex[jc-m="start"] { justify-content: flex-start }
+    x-flex[jc-m="center"] { justify-content: center }
     x-flex[jc-m="end"] { justify-content: flex-end }
     x-flex[ji-m="start"] { justify-items: flex-start }
+    x-flex[ji-m="center"] { justify-items: center }
     x-flex[ji-m="end"] { justify-items: flex-end }
     x-flex[ai-m="start"] { align-items: flex-start }
+    x-flex[ai-m="center"] { align-items: center }
     x-flex[ai-m="end"] { align-items: flex-end }
     x-flex[ac-m="start"] { align-content: flex-start }
+    x-flex[ac-m="center"] { align-content: center }
     x-flex[ac-m="end"] { align-content: flex-end }
     x-flex[as-m="start"] { align-self: flex-start }
+    x-flex[as-m="center"] { align-self: center }
     x-flex[as-m="end"] { align-self: flex-end }
     x-flex[js-m="start"] { justify-self: flex-start }
+    x-flex[js-m="center"] { justify-self: center }
     x-flex[js-m="end"] { justify-self: flex-end }
     x-flex[pi-m="start"] { place-items: flex-start }
+    x-flex[pi-m="center"] { place-items: center }
     x-flex[pi-m="end"] { place-items: flex-end }
     x-flex[pi-m="start center"] { place-items: flex-start center }
     x-flex[pi-m="start end"] { place-items: flex-start flex-end }
@@ -1983,6 +2091,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     x-flex[pi-m="stretch start"] { place-items: stretch flex-start }
     x-flex[pi-m="stretch end"] { place-items: stretch flex-end }
     x-flex[pc-m="start"] { place-content: flex-start }
+    x-flex[pc-m="center"] { place-content: center }
     x-flex[pc-m="end"] { place-content: flex-end }
     x-flex[pc-m="start center"] { place-content: flex-start center }
     x-flex[pc-m="start end"] { place-content: flex-start flex-end }
@@ -2007,6 +2116,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     x-flex[pc-m="evenly start"] { place-content: space-evenly flex-start }
     x-flex[pc-m="evenly end"] { place-content: space-evenly flex-end }
     x-flex[ps-m="start"] { place-self: flex-start }
+    x-flex[ps-m="center"] { place-self: center }
     x-flex[ps-m="end"] { place-self: flex-end }
     x-flex[ps-m="start center"] { place-self: flex-start center }
     x-flex[ps-m="start end"] { place-self: flex-start flex-end }
@@ -2040,253 +2150,23 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     [order-m="last"] { order: 99 }
 }
 
-/*** [L] for window width >= 1600 */
-@media (min-width: 1599px) {
-    /* Justify CONTENT */
-    [jc-l="start"] { justify-content: start } 
-    [jc-l="center"] { justify-content: center }
-    [jc-l="end"] { justify-content: end } 
-    [jc-l="stretch"] { justify-content: stretch }
-    [jc-l="around"] { justify-content: space-around }
-    [jc-l="between"] { justify-content: space-between }
-    [jc-l="evenly"] { justify-content: space-evenly }
-
-    /* Justify ITEMS */
-    [ji-l="start"] { justify-items: start }
-    [ji-l="center"] { justify-items: center }
-    [ji-l="end"] { justify-items: end }
-    [ji-l="stretch"] { justify-items: stretch }
-
-    /* Align ITEMS */
-    [ai-l="start"] { align-items: start } 
-    [ai-l="center"] { align-items: center }
-    [ai-l="end"] { align-items: end } 
-    [ai-l="stretch"] { align-items: stretch }
-
-    /* Align CONTENT */
-    [ac-l="start"] { align-content: start } 
-    [ac-l="center"] { align-content: center }
-    [ac-l="end"] { align-content: end } 
-    [ac-l="stretch"] { align-content: stretch }
-    [ac-l="around"] { align-content: space-around }
-    [ac-l="between"] { align-content: space-between }
-    [ac-l="evenly"] { align-content: space-evenly }
-
-    /* Align SELF */
-    [as-l="start"] { align-self: start } 
-    [as-l="center"] { align-self: center }
-    [as-l="end"] { align-self: end } 
-    [as-l="stretch"] { align-self: stretch }
-
-    /* Justify SELF */
-    [js-l="start"] { justify-self: start }
-    [js-l="center"] { justify-self: center }
-    [js-l="end"] { justify-self: end }
-    [js-l="stretch"] { justify-self: stretch }
-
-    /* Place ITEMS – place-items: align-items justify-items; */
-    [pi-l="start"] { place-items: start }
-    [pi-l="center"] { place-items: center }
-    [pi-l="end"] { place-items: end }
-    [pi-l="stretch"] { place-items: stretch }
-
-    [pi-l="start center"] { place-items: start center }
-    [pi-l="start end"] { place-items: start end }
-    [pi-l="start stretch"] { place-items: start stretch }
-
-    [pi-l="center start"] { place-items: center start }
-    [pi-l="center end"] { place-items: center end }
-    [pi-l="center stretch"] { place-items: center stretch }
-
-    [pi-l="end start"] { place-items: end start }
-    [pi-l="end center"] { place-items: end center }
-    [pi-l="end stretch"] { place-items: end stretch }
-
-    [pi-l="stretch start"] { place-items: stretch start }
-    [pi-l="stretch center"] { place-items: stretch center }
-    [pi-l="stretch end"] { place-items: stretch end }
-
-    /* Place CONTENT - place-content: align-content justify-content */
-    [pc-l="start"] { place-content: start }
-    [pc-l="center"] { place-content: center }
-    [pc-l="end"] { place-content: end }
-    [pc-l="stretch"] { place-content: stretch }
-    [pc-l="around"] { place-content: space-around }
-    [pc-l="between"] { place-content: space-between }
-    [pc-l="evenly"] { place-content: space-evenly }
-
-    [pc-l="start center"] { place-content: start center }
-    [pc-l="start end"] { place-content: start end }
-    [pc-l="start stretch"] { place-content: start stretch }
-    [pc-l="start around"] { place-content: start space-around }
-    [pc-l="start between"] { place-content: start space-between }
-    [pc-l="start evenly"] { place-content: start space-evenly }
-
-    [pc-l="center start"] { place-content: center start }
-    [pc-l="center end"] { place-content: center end }
-    [pc-l="center stretch"] { place-content: center stretch }
-    [pc-l="center around"] { place-content: center space-around }
-    [pc-l="center between"] { place-content: center space-between }
-    [pc-l="center evenly"] { place-content: center space-evenly }
-
-    [pc-l="end start"] { place-content: end start }
-    [pc-l="end center"] { place-content: end center }
-    [pc-l="end stretch"] { place-content: end stretch }
-    [pc-l="end around"] { place-content: end space-around }
-    [pc-l="end between"] { place-content: end space-between }
-    [pc-l="end evenly"] { place-content: end space-evenly }
-
-    [pc-l="stretch start"] { place-content: stretch start }
-    [pc-l="stretch center"] { place-content: stretch center }
-    [pc-l="stretch end"] { place-content: stretch end }
-    [pc-l="stretch around"] { place-content: stretch space-around }
-    [pc-l="stretch between"] { place-content: stretch space-between }
-    [pc-l="stretch evenly"] { place-content: stretch space-evenly }
-
-    [pc-l="around start"] { place-content: space-around start }
-    [pc-l="around center"] { place-content: space-around center }
-    [pc-l="around end"] { place-content: space-around end }
-    [pc-l="around stretch"] { place-content: space-around stretch }
-    [pc-l="around between"] { place-content: space-around space-between }
-    [pc-l="around evenly"] { place-content: space-around space-evenly }
-
-    [pc-l="between start"] { place-content: space-between start }
-    [pc-l="between center"] { place-content: space-between center }
-    [pc-l="between end"] { place-content: space-between end }
-    [pc-l="between stretch"] { place-content: space-between stretch }
-    [pc-l="between around"] { place-content: space-between space-around }
-    [pc-l="between evenly"] { place-content: space-between space-evenly }
-
-    [pc-l="evenly start"] { place-content: space-evenly start }
-    [pc-l="evenly center"] { place-content: space-evenly center }
-    [pc-l="evenly end"] { place-content: space-evenly end }
-    [pc-l="evenly stretch"] { place-content: space-evenly stretch }
-    [pc-l="evenly around"] { place-content: space-evenly space-around }
-    [pc-l="evenly between"] { place-content: space-evenly space-between }
-
-    /* Place SELF - place-self: align-self justify-self; */
-    [ps-l="start"] { place-self: start }
-    [ps-l="center"] { place-self: center }
-    [ps-l="end"] { place-self: end }
-    [ps-l="stretch"] { place-self: stretch }
-
-    [ps-l="start center"] { place-self: start center }
-    [ps-l="start end"] { place-self: start end }
-    [ps-l="start stretch"] { place-self: start stretch }
-
-    [ps-l="center start"] { place-self: center start }
-    [ps-l="center end"] { place-self: center end }
-    [ps-l="center stretch"] { place-self: center stretch }
-
-    [ps-l="end start"] { place-self: end start }
-    [ps-l="end center"] { place-self: end center }
-    [ps-l="end stretch"] { place-self: end stretch }
-
-    [ps-l="stretch start"] { place-self: stretch start }
-    [ps-l="stretch center"] { place-self: stretch center }
-    [ps-l="stretch end"] { place-self: stretch end }
-
-    /* flex-* start & end for flexbox (needed for safari) */
-    x-flex[jc-l="start"] { justify-content: flex-start }
-    x-flex[jc-l="end"] { justify-content: flex-end }
-    x-flex[ji-l="start"] { justify-items: flex-start }
-    x-flex[ji-l="end"] { justify-items: flex-end }
-    x-flex[ai-l="start"] { align-items: flex-start }
-    x-flex[ai-l="end"] { align-items: flex-end }
-    x-flex[ac-l="start"] { align-content: flex-start }
-    x-flex[ac-l="end"] { align-content: flex-end }
-    x-flex[as-l="start"] { align-self: flex-start }
-    x-flex[as-l="end"] { align-self: flex-end }
-    x-flex[js-l="start"] { justify-self: flex-start }
-    x-flex[js-l="end"] { justify-self: flex-end }
-    x-flex[pi-l="start"] { place-items: flex-start }
-    x-flex[pi-l="end"] { place-items: flex-end }
-    x-flex[pi-l="start center"] { place-items: flex-start center }
-    x-flex[pi-l="start end"] { place-items: flex-start flex-end }
-    x-flex[pi-l="start stretch"] { place-items: flex-start stretch }
-    x-flex[pi-l="center start"] { place-items: center flex-start }
-    x-flex[pi-l="center end"] { place-items: center flex-end }
-    x-flex[pi-l="end start"] { place-items: flex-end flex-start }
-    x-flex[pi-l="end center"] { place-items: flex-end center }
-    x-flex[pi-l="end stretch"] { place-items: flex-end stretch }
-    x-flex[pi-l="stretch start"] { place-items: stretch flex-start }
-    x-flex[pi-l="stretch end"] { place-items: stretch flex-end }
-    x-flex[pc-l="start"] { place-content: flex-start }
-    x-flex[pc-l="end"] { place-content: flex-end }
-    x-flex[pc-l="start center"] { place-content: flex-start center }
-    x-flex[pc-l="start end"] { place-content: flex-start flex-end }
-    x-flex[pc-l="start stretch"] { place-content: flex-start stretch }
-    x-flex[pc-l="start around"] { place-content: flex-start space-around }
-    x-flex[pc-l="start between"] { place-content: flex-start space-between }
-    x-flex[pc-l="start evenly"] { place-content: flex-start space-evenly }
-    x-flex[pc-l="center start"] { place-content: center flex-start }
-    x-flex[pc-l="center end"] { place-content: center flex-end }
-    x-flex[pc-l="end start"] { place-content: flex-end flex-start }
-    x-flex[pc-l="end center"] { place-content: flex-end center }
-    x-flex[pc-l="end stretch"] { place-content: flex-end stretch }
-    x-flex[pc-l="end around"] { place-content: flex-end space-around }
-    x-flex[pc-l="end between"] { place-content: flex-end space-between }
-    x-flex[pc-l="end evenly"] { place-content: flex-end space-evenly }
-    x-flex[pc-l="stretch start"] { place-content: stretch flex-start }
-    x-flex[pc-l="stretch end"] { place-content: stretch flex-end }
-    x-flex[pc-l="around start"] { place-content: space-around flex-start }
-    x-flex[pc-l="around end"] { place-content: space-around flex-end }
-    x-flex[pc-l="between start"] { place-content: space-between flex-start }
-    x-flex[pc-l="between end"] { place-content: space-between flex-end }
-    x-flex[pc-l="evenly start"] { place-content: space-evenly flex-start }
-    x-flex[pc-l="evenly end"] { place-content: space-evenly flex-end }
-    x-flex[ps-l="start"] { place-self: flex-start }
-    x-flex[ps-l="end"] { place-self: flex-end }
-    x-flex[ps-l="start center"] { place-self: flex-start center }
-    x-flex[ps-l="start end"] { place-self: flex-start flex-end }
-    x-flex[ps-l="start stretch"] { place-self: flex-start stretch }
-    x-flex[ps-l="center start"] { place-self: center flex-start }
-    x-flex[ps-l="center end"] { place-self: center flex-end }
-    x-flex[ps-l="end start"] { place-self: flex-end flex-start }
-    x-flex[ps-l="end center"] { place-self: flex-end center }
-    x-flex[ps-l="end stretch"] { place-self:flex-end stretch }
-    x-flex[ps-l="stretch start"] { place-self: stretch flex-start }
-    x-flex[ps-l="stretch end"] { place-self: stretch flex-end }
-
-    /* VISUAL ORDER */
-    [order-l="first"] { order: -1 }
-    [order-l="1"] { order: 1 }
-    [order-l="2"] { order: 2 }
-    [order-l="3"] { order: 3 }
-    [order-l="4"] { order: 4 }
-    [order-l="5"] { order: 5 }
-    [order-l="6"] { order: 6 }
-    [order-l="7"] { order: 7 }
-    [order-l="8"] { order: 8 }
-    [order-l="9"] { order: 9 }
-    [order-l="10"] { order: 10 }
-    [order-l="11"] { order: 11 }
-    [order-l="12"] { order: 12 }
-    [order-l="13"] { order: 13 }
-    [order-l="14"] { order: 14 }
-    [order-l="15"] { order: 15 }
-    [order-l="16"] { order: 16 }
-    [order-l="last"] { order: 99 }
-}
-
 /* Debug */
-.debug > * { --dc:rgba(248,110,91,0.3); background: var(--dc) }
-.debug>:nth-child(6n+2){ --dc:rgb(103,126,208,.5) }
-.debug>:nth-child(6n+3){ --dc:rgb(224,174,72,0.5) }
-.debug>:nth-child(6n+4){ --dc:rgb(77,214,115,0.5) }
-.debug>:nth-child(6n+5){ --dc:rgb(217,103,219,0.5) }
-.debug>:nth-child(6n+6){ --dc:rgb(94,204,211,0.5) }
-.debug>:nth-child(6n+7){ --dc:rgb(248,110,91,0.5) }
-.debug.outline { outline: 1px dotted red }
-.debug.outline-child { outline: 1px dotted red; outline-offset: 5px }
-.debug.outline-child > * { outline: 1px dotted lime }
+.debug > * { --dc:rgba(248,110,91,0.8); background: var(--dc) }
+.debug>:nth-child(6n+2){ --dc:rgb(103,126,208,.8) }
+.debug>:nth-child(6n+3){ --dc:rgb(224,174,72,0.8) }
+.debug>:nth-child(6n+4){ --dc:rgb(77,214,115,0.8) }
+.debug>:nth-child(6n+5){ --dc:rgb(217,103,219,0.8) }
+.debug>:nth-child(6n+6){ --dc:rgb(94,204,211,0.8) }
+.debug>:nth-child(6n+7){ --dc:rgb(248,110,91,0.8) }
+.debug.outline { outline: 1px dotted var(--red) }
+.debug.outline-child { outline: 1px dotted var(--red); outline-offset: 5px }
+.debug.outline-child > * { outline: 1px dotted var(--green) }
 
 /* ------------------
   Cubic Beziers
 ------------------ */
 /*
- * Can be used both in transition:; & animation:;
- * Example: transition: all 1s var(--easeInOutQuad);
+ * examples at: https://easings.net/
 */
 :root {
     --easeInSine: cubic-bezier(0.12, 0, 0.39, 0);
@@ -2325,85 +2205,6 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 /* ------------------
   animations
 ------------------ */
-/*
- * To make it work you need: START | ANIMATION TYPE | DURATION | DELAY (optional) | CUBIC BEZIER (optional)
- * Example: <h1 start animation="fadein" ease="easeInOutCubic" style="--duration: 1s">example</h1>
-*/
-
-/** ANIMATION */
-[start], .animate {
-    animation-fill-mode: both; 
-    animation-name: var(--animation-name, fadeIn); /* default animation: fadeIn */
-    animation-duration: var(--duration, 1s);  /* default duration: 1s */
-    animation-delay: var(--delay, 0s); /* default delay: 0s */
-    animation-timing-function: var(--ease, easeInOutCubic); /* default ease: easeInOutCubic */
-}
-
-/*** Cubic Bezier for ANIMATIONS • examples at: https://easings.net/ */
-[ease="easeInSine"]     { --ease: var(--easeInSine) }
-[ease="easeOutSine"]    { --ease: var(--easeOutSine) }
-[ease="easeInOutSine"]  { --ease: var(--easeInOutSine) }
-
-[ease="easeInQuad"]     { --ease: var(--easeInQuad) }
-[ease="easeOutQuad"]    { --ease: var(--easeOutQuad) }
-[ease="easeInOutQuad"]  { --ease: var(--easeInOutQuad) }
-
-[ease="easeInCubic"]    { --ease: var(--easeInCubic) }
-[ease="easeOutCubic"]   { --ease: var(--easeOutCubic) }
-[ease="easeInOutCubic"] { --ease: var(--easeInOutCubic) }
-
-[ease="easeInQuart"]    { --ease: var(--easeInQuart) }
-[ease="easeOutQuart"]   { --ease: var(--easeOutQuart) }
-[ease="easeInOutQuart"] { --ease: var(--easeInOutQuart) }
-
-[ease="easeInQuint"]    { --ease: var(--easeInQuint) }
-[ease="easeOutQuint"]   { --ease: var(--easeOutQuint) }
-[ease="easeInOutQuint"] { --ease: var(--easeInOutQuint) }
-
-[ease="easeInExpo"]     { --ease: var(--easeInExpo) }
-[ease="easeOutExpo"]    { --ease: var(--easeOutExpo) }
-[ease="easeInOutExpo"]  { --ease: var(--easeInOutExpo) }
-
-[ease="easeInCirc"]     { --ease: var(--easeInCirc) }
-[ease="easeOutCirc"]    { --ease: var(--easeOutCirc) }
-[ease="easeInOutCirc"]  { --ease: var(--easeInOutCirc) }
-
-[ease="easeInBack"]     { --ease: var(--easeInBack) }
-[ease="easeOutBack"]    { --ease: var(--easeOutBack) }
-[ease="easeInOutBack"]  { --ease: var(--easeInOutBack) }
-
-.invisible, .hide { opacity: 0 }
-.infinite, .loop { animation-iteration-count: infinite }
-.reverse { animation-direction: reverse }
-.alternate { animation-direction: alternate }
-.alternate-reverse { animation-direction: alternate-reverse }
-
-[animation="fadein"] { --animation-name: fadeIn }
-[animation="fadein-up"] { --animation-name: fadeInUp }
-[animation="fadein-down"] { --animation-name: fadeInDown }
-[animation="fadein-right"] { --animation-name: fadeInRight }
-[animation="fadein-left"] { --animation-name: fadeInLeft }
-[animation="fadeout"] { --animation-name: fadeOut }
-[animation="fadeout-down"] { --animation-name: fadeOutDown }
-[animation="flash"] { --animation-name: flash }
-[animation="loading"] { --animation-name: loading }
-[animation="pulse"] { --animation-name: pulse }
-[animation="wobble"] { --animation-name: wobble }
-[animation="shake"] { --animation-name: shake }
-[animation="rollin"] { --animation-name: rollIn }
-[animation="rollout"] { --animation-name: rollOut }
-[animation="zoomin"] { --animation-name: zoomIn }
-[animation="zoomout"] { --animation-name: zoomIn; animation-direction: reverse }
-[animation="zoomin-down"] { --animation-name: zoomInDown }
-[animation="bounce"] { --animation-name: bounce; transform-origin: center bottom }
-[animation="bouncein"] { --animation-name: bounceIn }
-[animation="scalein"] { --animation-name: scaleIn; backface-visibility: hidden; transform: translateZ(0px) }
-[animation="flip"] { --animation-name: flip; backface-visibility:visible }
-[animation="flipin-x"] { --animation-name: flipInX; backface-visibility:visible  }
-[animation="flipout-x"] { --animation-name: flipOutX; backface-visibility:visible }
-[animation="flipin-y"] { --animation-name: flipInY; backface-visibility:visible}
-[animation="flipout-y"] { --animation-name: flipOutY; backface-visibility:visible }
-
 /**** Keyframes x Animations */
 @keyframes fadeIn { 0% { opacity: 0 } 100% { opacity: 1 } }
 @keyframes fadeInUp { 0% { opacity: 0; transform: translate3d(0, 20%, 0) } 100% { opacity: 1; transform: none } }
@@ -2427,7 +2228,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 }
 
 @keyframes shake  { 
-  from, to { transform: translate3d(0,0,0) }
+  0%, 100% { transform: translate3d(0,0,0) }
   10%, 30%, 50%, 70%, 90% { transform: translate3d(-10px,0,0) }
   20%, 40%, 60%, 80% { transform: translate3d(10px,0,0) }
 }
@@ -2501,4 +2302,4 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 }
 
 /*** Accessibility :: Disabling animations if user prefers-reduced-motion */
-@media screen and (prefers-reduced-motion: reduce), (update: slow) { * { animation-duration:0.001ms!important; animation-iteration-count:1!important; transition-duration:0.001ms!important; animation-delay:0.001ms!important } }
+@media screen and (prefers-reduced-motion: reduce), (update: slow) { *, *::before, *::after, *::backdrop { animation-duration:0.001ms!important; animation-iteration-count:1!important; transition-duration:0.001ms!important; animation-delay:0.001ms!important; transition-property: none } }
